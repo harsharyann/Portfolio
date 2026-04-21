@@ -18,6 +18,13 @@ const Navbar = () => {
     { name: 'UPLINK',    path: 'uplink' },
   ];
 
+  /* ── Live Clock For Navbar Branding ── */
+  const [time, setTime] = useState(new Date().toLocaleTimeString('en-US', { hour12: false }));
+  useEffect(() => {
+    const iv = setInterval(() => setTime(new Date().toLocaleTimeString('en-US', { hour12: false })), 1000);
+    return () => clearInterval(iv);
+  }, []);
+
   useEffect(() => {
     const onScroll = () => {
       setScrolled(window.scrollY > 20);
@@ -58,12 +65,22 @@ const Navbar = () => {
         <motion.nav 
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`pointer-events-auto flex items-center justify-between w-full max-w-[95%] sm:max-w-none sm:w-auto px-4 sm:px-6 py-2 rounded-sm border transition-all duration-700 relative overflow-hidden ${
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[95%] lg:max-w-7xl px-4 sm:px-8 py-3 rounded-sm border transition-all duration-700 relative overflow-hidden ${
             scrolled
-              ? 'bg-black/95 border-white/20 shadow-[0_32px_80px_rgba(0,0,0,1)]'
-              : 'bg-black/20 border-white/10 backdrop-blur-lg'
+              ? 'bg-[var(--cmd-navy)]/95 border-[var(--cmd-border)] shadow-[0_32px_80px_rgba(0,0,0,0.8)]'
+              : 'bg-[var(--cmd-navy)]/20 border-[var(--cmd-border)] backdrop-blur-xl'
           }`}
         >
+          {/* ── BRANDING (Now Inside Navbar to prevent overlap) ── */}
+          <div className="flex flex-col min-w-0">
+            <h2 className="font-headline font-black text-xs sm:text-base tracking-tighter text-[var(--cmd-accent)] uppercase flex items-center gap-2 truncate">
+              Harsh <span className="text-[var(--cmd-accent)] opacity-30 hidden sm:inline">Aryan</span>
+            </h2>
+            <div className="flex items-center gap-2 font-mono text-[6px] sm:text-[7px] text-[var(--cmd-accent)] opacity-30 tracking-[0.3em] uppercase">
+                <span>{time}</span>
+                <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 2, repeat: Infinity }} className="w-0.5 h-0.5 bg-[var(--cmd-glow)] rounded-full shadow-[0_0_8px_var(--cmd-glow)]" />
+            </div>
+          </div>
           {/* Scanning Radar Line (Alive Factor) */}
           <motion.div 
              animate={{ x: ['-200%', '300%'] }}
@@ -80,35 +97,34 @@ const Navbar = () => {
                   id={`nav-btn-${link.path}`}
                   onClick={() => scrollTo(link.path)}
                   className={`px-3 sm:px-6 py-3 text-[9px] sm:text-[10px] font-mono font-black tracking-[0.4em] transition-all uppercase relative group touch-manipulation ${
-                    activeSection === link.path ? 'text-white' : 'text-white/20 hover:text-white/60'
+                    activeSection === link.path ? 'text-[var(--cmd-accent)]' : 'text-[var(--cmd-accent)] opacity-20 hover:opacity-100'
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
                   {activeSection === link.path && (
-                    <motion.div layoutId="nav-active-pill" className="absolute inset-x-2 inset-y-2 bg-white/[0.03] border border-white/5 rounded-sm" />
+                    <motion.div layoutId="nav-active-pill" className="absolute inset-x-2 inset-y-2 bg-[var(--cmd-accent)]/5 border border-[var(--cmd-border)] rounded-sm" />
                   )}
-                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-white/20 group-hover:w-1/2 transition-all duration-500" />
+                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[var(--cmd-accent)] opacity-20 group-hover:w-1/2 transition-all duration-500" />
                 </button>
               ))}
             </div>
           )}
 
-          {/* ── UNIQUE TACTICAL TRIGGER (Mobile Only) ── */}
           <button
             onClick={() => setMobileOpen(v => !v)}
-            className="md:hidden flex flex-col gap-1.5 p-3 group/ham"
+            className="md:hidden flex flex-col gap-1.5 p-3 group/ham ml-auto"
           >
             <motion.div 
                animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-               className="w-6 h-[1.5px] bg-white/40 group-hover/ham:bg-white transition-colors" 
+               className="w-6 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
             />
             <motion.div 
                animate={mobileOpen ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
-               className="w-4 h-[1.5px] bg-white/40 group-hover/ham:bg-white self-end transition-colors" 
+               className="w-4 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 self-end transition-all" 
             />
             <motion.div 
                animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-               className="w-6 h-[1.5px] bg-white/40 group-hover/ham:bg-white transition-colors" 
+               className="w-6 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
             />
           </button>
         </motion.nav>
@@ -127,17 +143,19 @@ const Navbar = () => {
             <button onClick={() => setMobileOpen(false)} className="absolute top-10 right-10 text-white/40 border border-white/10 p-4 rounded-full touch-manipulation">
               <X size={28} />
             </button>
-            <div className="flex flex-col items-center gap-10">
-               {navLinks.map((link, idx) => (
+            <div className="flex flex-col w-full">
+               {navLinks.map((link, i) => (
                  <button 
                   key={link.name} 
                   onClick={() => scrollTo(link.path)} 
-                  className="flex flex-col items-center group py-4 min-w-[200px] touch-manipulation"
+                  className="w-full text-left"
                  >
-                    <span className="text-[10px] font-mono text-white/10 mb-2 font-black tracking-widest uppercase">NODE_0{idx + 1}</span>
-                    <span className="text-4xl font-headline font-black text-white/30 group-hover:text-white uppercase tracking-tighter transition-all">
-                       {link.name}
+                  <div className={`px-8 py-10 flex flex-col gap-2 border-b border-[var(--cmd-border)] ${activeSection === link.path ? 'bg-[var(--cmd-accent)]/5' : ''}`}>
+                    <span className="text-[10px] font-mono text-[var(--cmd-accent)]/40 tracking-widest">{`0${i + 1}`}</span>
+                    <span className={`text-2xl font-headline font-black tracking-tighter ${activeSection === link.path ? 'text-[var(--cmd-accent)]' : 'text-[var(--cmd-accent)]/40'}`}>
+                      {link.name}
                     </span>
+                  </div>
                  </button>
                ))}
             </div>

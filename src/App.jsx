@@ -12,9 +12,31 @@ import Dashboard from './pages/Dashboard';
 
 import { LogProvider } from './context/LogContext';
 import { AuthProvider } from './context/AuthContext';
-import { ConfigProvider } from './context/ConfigContext';
+import { ConfigProvider, useConfig } from './context/ConfigContext';
 import SpaceEngine from './components/SpaceEngine';
 import GlobalFX from './components/GlobalFX';
+
+/* ── THEME MANAGER ── */
+const ThemeManager = () => {
+  const { config, THEME_PRESETS } = useConfig();
+  
+  useEffect(() => {
+    const themeKey = config.theme || 'AGENT_SPECTER';
+    const theme = THEME_PRESETS[themeKey] || THEME_PRESETS.AGENT_SPECTER;
+    
+    const root = document.documentElement;
+    root.style.setProperty('--cmd-navy', theme.navy);
+    root.style.setProperty('--cmd-accent', theme.accent);
+    root.style.setProperty('--cmd-glow', theme.glow);
+    root.style.setProperty('--cmd-border', theme.border);
+    root.style.setProperty('--cmd-grid-color', theme.grid);
+    
+    // Also update body background for seamless transitions
+    document.body.style.backgroundColor = theme.navy;
+  }, [config.theme]);
+
+  return null;
+};
 
 // Unified Single Page Portfolio Layout
 const PortfolioLayout = () => {
@@ -65,7 +87,8 @@ const PortfolioLayout = () => {
 const AppInner = () => {
   return (
     <Router>
-      <div className="min-h-screen text-[var(--cmd-cream)] overflow-x-hidden selection:bg-[var(--cmd-yellow)] selection:text-black transition-colors duration-1000">
+      <div className="min-h-screen text-[var(--cmd-accent)] overflow-x-hidden selection:bg-[var(--cmd-accent)] selection:text-black transition-colors duration-1000 bg-[var(--cmd-navy)]">
+        <ThemeManager />
         <GlobalFX />
         <div className="crt-overlay pointer-events-none" />
 

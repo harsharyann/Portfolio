@@ -15,10 +15,10 @@ html {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 :root {
   --cmd-navy:   #050505;
-  --cmd-yellow: #ffffff;
-  --cmd-accent: #888888;
-  --cmd-cream:  #ffffff;
+  --cmd-accent: #ffffff;
+  --cmd-glow:   #00ff8d;
   --cmd-border: rgba(255,255,255,0.15);
+  --cmd-grid-color: rgba(255,255,255,0.012);
   --surface-blur: blur(24px);
   --transition-tactical: cubic-bezier(0.19, 1, 0.22, 1);
 }
@@ -50,7 +50,7 @@ html {
   content: '';
   position: absolute;
   top: 0; left: 0; width: 4px; height: 1px;
-  background: var(--cmd-yellow);
+  background: var(--cmd-accent);
   opacity: 0.3;
 }
 
@@ -74,7 +74,7 @@ html {
 }
 
 @keyframes glitch {
-  0% { transform: translate(0); text-shadow: -1px 0 var(--cmd-yellow), 1px 0 #fff; }
+  0% { transform: translate(0); text-shadow: -1px 0 var(--cmd-accent), 1px 0 #fff; }
   2% { transform: translate(-1px, 1px); }
   4% { transform: translate(1px, -1px); }
   6% { transform: translate(0); }
@@ -112,8 +112,8 @@ body {
 }
 
 @keyframes pulse-cyan {
-  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--cmd-yellow)); }
-  50% { opacity: 0.5; filter: drop-shadow(0 0 10px var(--cmd-yellow)); }
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--cmd-glow)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 10px var(--cmd-glow)); }
 }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -142,8 +142,8 @@ body {
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
 .tech-grid-complex {
   background-image:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+    linear-gradient(var(--cmd-grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--cmd-grid-color) 1px, transparent 1px);
   background-size: 50px 50px;
 }
 
@@ -165,7 +165,7 @@ body {
 ::-webkit-scrollbar       { width: 5px; height: 5px; }
 ::-webkit-scrollbar-track { background: var(--cmd-navy); }
 ::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
-::-webkit-scrollbar-thumb:hover { background: var(--cmd-yellow); }
+::-webkit-scrollbar-thumb:hover { background: var(--cmd-accent); }
 .scrollbar-none           { scrollbar-width: none; }
 .scrollbar-none::-webkit-scrollbar { display: none; }
 
@@ -184,8 +184,8 @@ body {
 }
 
 @keyframes pulse-glow {
-  0%, 100% { opacity: 0.7; filter: drop-shadow(0 0 6px var(--cmd-yellow)); }
-  50%       { opacity: 1;   filter: drop-shadow(0 0 18px var(--cmd-yellow)); }
+  0%, 100% { opacity: 0.7; filter: drop-shadow(0 0 6px var(--cmd-glow)); }
+  50%       { opacity: 1;   filter: drop-shadow(0 0 18px var(--cmd-glow)); }
 }
 
 @keyframes float-tech {
@@ -216,15 +216,15 @@ body {
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    MISC HELPERS
 ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
-.glow-text-primary { text-shadow: 0 0 12px var(--cmd-yellow); }
-
-.tactical-node-active {
-  width: 10px;
-  height: 10px;
-  background: var(--cmd-yellow);
-  border-radius: 50%;
-  box-shadow: 0 0 15px var(--cmd-yellow);
-}
+.glow-text-primary { text-shadow: 0 0 12px var(--cmd-glow); }
+ 
+ .tactical-node-active {
+   width: 10px;
+   height: 10px;
+   background: var(--cmd-accent);
+   border-radius: 50%;
+   box-shadow: 0 0 15px var(--cmd-glow);
+ }
 
 /* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
    RESPONSIVE OVERRIDES

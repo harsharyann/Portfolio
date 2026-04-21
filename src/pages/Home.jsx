@@ -61,26 +61,7 @@ const SpaceTrafficEngine = () => {
     );
 };
 
-/* ── Home Branding ── */
-const TopLeftBranding = () => {
-    return (
-        <motion.div
-            initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            className="absolute top-8 left-6 sm:top-10 sm:left-10 z-[60] group pointer-events-none"
-        >
-            <div className="relative pointer-events-auto">
-                <div className="absolute -left-4 top-1 h-full w-[1.5px] bg-white/20 group-hover:h-[120%] transition-all duration-500" />
-                <h2 className="font-headline font-black text-xl sm:text-2xl tracking-tighter text-white uppercase group-hover:ml-2 transition-all">
-                    Harsh <span className="text-white/30 group-hover:text-white transition-colors">Aryan</span>
-                </h2>
-                <div className="flex items-center gap-3 mt-1.5 font-mono text-[8px] sm:text-[9px] text-white/40 tracking-[0.4em] uppercase">
-                    <Clock />
-                    <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 2, repeat: Infinity }} className="w-0.5 h-0.5 bg-white rounded-full shadow-[0_0_8px_#fff]" />
-                </div>
-            </div>
-        </motion.div>
-    );
-};
+
 
 /* ── Home ── */
 const Home = () => {
@@ -88,7 +69,7 @@ const Home = () => {
 
   return (
     <main className="min-h-screen pt-32 pb-24 px-6 lg:px-12 relative tech-grid-complex overflow-hidden bg-[#050505]">
-      <TopLeftBranding />
+
 
       <div className="max-w-[1700px] mx-auto w-full flex flex-col gap-10 relative z-10">
 

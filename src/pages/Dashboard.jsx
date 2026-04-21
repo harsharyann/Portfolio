@@ -322,6 +322,9 @@ const Dashboard = () => {
   const [certificates, setCertificates] = useState([...(config.certificates || [])]);
   const [social, setSocial] = useState([...(config.social?.links || [])]);
   const [skills, setSkills] = useState([...(config.skills || [])]);
+  const [theme, setTheme] = useState(config.theme || 'AGENT_SPECTER');
+
+  const { THEME_PRESETS } = useConfig();
 
   // ── SAVE HANDLERS ──────────────────────────────────
   const saveProfile = (e) => { e.preventDefault(); updateConfig({ profile }); flash('profile'); };
@@ -332,6 +335,7 @@ const Dashboard = () => {
   const saveCertificates = (e) => { e.preventDefault(); updateConfig({ certificates }); flash('certificates'); };
   const saveSocial = (e) => { e.preventDefault(); updateConfig({ social: { links: social } }); flash('social'); };
   const saveSkills = (e) => { e.preventDefault(); updateConfig({ skills }); flash('skills'); };
+  const saveTheme = (e) => { e.preventDefault(); updateConfig({ theme }); flash('theme'); };
 
   const resetAll = () => {
     if (window.confirm('Reset ALL data to defaults?')) {
@@ -371,7 +375,40 @@ const Dashboard = () => {
           <p className="text-[10px] text-white/20 tracking-widest uppercase mt-2">Click any section to expand and edit. All changes are saved live.</p>
         </div>
 
-        {/* ── 1. PROFILE ── */}
+          {/* ── THEME_00: SYSTEM THEME ── */}
+          <AdminSection id="THEME_00" label="Visual Architecture" icon={Activity}>
+             <form onSubmit={saveTheme} className="space-y-6">
+                <Field label="System Preset Theme">
+                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+                      {Object.keys(THEME_PRESETS).map((key) => (
+                         <button
+                            key={key}
+                            type="button"
+                            onClick={() => setTheme(key)}
+                            className={`p-4 border text-left transition-all relative overflow-hidden group ${
+                               theme === key 
+                               ? 'border-white bg-white/10' 
+                               : 'border-white/5 bg-white/[0.02] hover:border-white/20'
+                            }`}
+                         >
+                            <div className="text-[7px] tracking-[0.3em] uppercase text-white/40 mb-1">Theme_ID: {key}</div>
+                            <div className="text-[10px] font-black tracking-widest text-white uppercase">{THEME_PRESETS[key].name}</div>
+                            
+                            {/* Theme Color Preview Nodes */}
+                            <div className="flex gap-2 mt-3">
+                               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRESETS[key].accent }} />
+                               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRESETS[key].glow }} />
+                               <div className="w-2 h-2 rounded-full" style={{ backgroundColor: THEME_PRESETS[key].navy }} />
+                            </div>
+                         </button>
+                      ))}
+                   </div>
+                </Field>
+                <SaveBtn saved={saved.theme} />
+             </form>
+          </AdminSection>
+
+          {/* ── 1. PROFILE ── */}
         <AdminSection id="PROF_01" label="Profile & Identity" icon={User}>
           <form onSubmit={saveProfile} className="space-y-6">
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

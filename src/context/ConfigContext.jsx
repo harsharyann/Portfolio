@@ -1,6 +1,129 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { supabase } from '../utils/supabase';
 
+export const THEME_PRESETS = {
+  AGENT_SPECTER: {
+    name: 'Agent Specter',
+    navy: '#050505',
+    accent: '#ffffff',
+    glow: '#00ff8d',
+    border: 'rgba(255,255,255,0.15)',
+    grid: 'rgba(255,255,255,0.012)'
+  },
+  QUANTUM_JUNGLE: {
+    name: 'Quantum Jungle',
+    navy: '#0b001a',
+    accent: '#00ffa3',
+    glow: '#ff00ff',
+    border: 'rgba(0,255,163,0.2)',
+    grid: 'rgba(255,0,255,0.02)'
+  },
+  NEBULA_RECON: {
+    name: 'Nebula Recon',
+    navy: '#0a0a14',
+    accent: '#9d00ff',
+    glow: '#00ccff',
+    border: 'rgba(157,0,255,0.2)',
+    grid: 'rgba(0,204,255,0.02)'
+  },
+  DEEP_OCEAN: {
+    name: 'Deep Ocean',
+    navy: '#000b14',
+    accent: '#00d4ff',
+    glow: '#008cff',
+    border: 'rgba(0,212,255,0.2)',
+    grid: 'rgba(0,140,255,0.02)'
+  },
+  SOLAR_STORM: {
+    name: 'Solar Storm',
+    navy: '#120800',
+    accent: '#ff8c00',
+    glow: '#ff4500',
+    border: 'rgba(255,140,0,0.2)',
+    grid: 'rgba(255,69,0,0.02)'
+  },
+  SILICON_FLORA: {
+    name: 'Silicon Flora',
+    navy: '#0d0f0d',
+    accent: '#e0e0e0',
+    glow: '#a8ff00',
+    border: 'rgba(224,224,224,0.15)',
+    grid: 'rgba(168,255,0,0.02)'
+  },
+  FROST_PROTOCOL: {
+    name: 'Frost Protocol',
+    navy: '#000f1a',
+    accent: '#ffffff',
+    glow: '#00f2ff',
+    border: 'rgba(0,242,255,0.2)',
+    grid: 'rgba(255,255,255,0.02)'
+  },
+  CORAL_SYNAPSE: {
+    name: 'Coral Synapse',
+    navy: '#1a0010',
+    accent: '#ff007a',
+    glow: '#00ffa3',
+    border: 'rgba(255,0,122,0.2)',
+    grid: 'rgba(0,255,163,0.02)'
+  },
+  AVIAN_RADAR: {
+    name: 'Avian Radar',
+    navy: '#121217',
+    accent: '#ffd700',
+    glow: '#ffffff',
+    border: 'rgba(255,215,0,0.2)',
+    grid: 'rgba(255,255,255,0.02)'
+  },
+  LAVA_LOGIC: {
+    name: 'Lava Logic',
+    navy: '#0a0500',
+    accent: '#ff3c00',
+    glow: '#ff9d00',
+    border: 'rgba(255,60,0,0.2)',
+    grid: 'rgba(255,157,0,0.02)'
+  },
+  PETAL_ENGINE: {
+    name: 'Petal Engine',
+    navy: '#120a10',
+    accent: '#ffb7c5',
+    glow: '#ffffff',
+    border: 'rgba(255,183,197,0.2)',
+    grid: 'rgba(255,255,255,0.02)'
+  },
+  BEYOND_HORIZON: {
+    name: 'Beyond Horizon',
+    navy: '#05020a',
+    accent: '#ff6b00',
+    glow: '#ff0055',
+    border: 'rgba(255,107,0,0.2)',
+    grid: 'rgba(255,0,85,0.02)'
+  },
+  BIO_MONITOR: {
+    name: 'Bio Monitor',
+    navy: '#080c08',
+    accent: '#39ff14',
+    glow: '#00ff8d',
+    border: 'rgba(57,255,20,0.2)',
+    grid: 'rgba(0,255,141,0.02)'
+  },
+  VOID_WHISPER: {
+    name: 'Void Whisper',
+    navy: '#020202',
+    accent: '#8b00ff',
+    glow: '#4b0082',
+    border: 'rgba(139,0,255,0.2)',
+    grid: 'rgba(75,0,130,0.02)'
+  },
+  TERRA_COA: {
+    name: 'Terra Coa',
+    navy: '#1a0d0a',
+    accent: '#ff7f50',
+    glow: '#f4a460',
+    border: 'rgba(255,127,80,0.2)',
+    grid: 'rgba(244,164,96,0.02)'
+  }
+};
+
 const ConfigContext = createContext();
 
 export const INITIAL_CONFIG = {
@@ -65,6 +188,7 @@ export const INITIAL_CONFIG = {
       { id: 3, platform: 'X', icon: 'x', url: '#' }
     ]
   },
+  theme: 'AGENT_SPECTER',
   skills: [
     {
       id: 'languages',
