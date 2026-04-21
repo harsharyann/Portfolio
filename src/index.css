@@ -1,0 +1,227 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;700&family=Inter:wght@300;400;600;700;800;900&family=Outfit:wght@200;300;400;500;600;700&display=swap');
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BASE RESET & SCROLL
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 5rem;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   LOCKED THEME: AGENT_SPECTER (Surgical White/Mono)
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+:root {
+  --cmd-navy:   #050505;
+  --cmd-yellow: #ffffff;
+  --cmd-accent: #888888;
+  --cmd-cream:  #ffffff;
+  --cmd-border: rgba(255,255,255,0.15);
+  --surface-blur: blur(24px);
+  --transition-tactical: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BLUEPRINT UTILITIES
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.bg-blueprint {
+  background-image: 
+    linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(rgba(255, 255, 255, 0.01) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.01) 1px, transparent 1px);
+  background-size: 80px 80px, 80px 80px, 20px 20px, 20px 20px;
+}
+
+.blueprint-panel {
+  background: rgba(5, 5, 5, 0.82);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.4s var(--transition-tactical), 
+              box-shadow 0.4s var(--transition-tactical);
+}
+
+.blueprint-panel::before {
+  content: '';
+  position: absolute;
+  top: 0; left: 0; width: 4px; height: 1px;
+  background: var(--cmd-yellow);
+  opacity: 0.3;
+}
+
+.blueprint-panel:hover {
+  border-color: rgba(255, 255, 255, 0.2);
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.05);
+}
+
+.blueprint-border {
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.01);
+}
+
+@keyframes line-draw {
+  from { width: 0; opacity: 0; }
+  to { width: 100%; opacity: 1; }
+}
+
+.animate-line-draw {
+  animation: line-draw 1.2s var(--transition-tactical) forwards;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); text-shadow: -1px 0 var(--cmd-yellow), 1px 0 #fff; }
+  2% { transform: translate(-1px, 1px); }
+  4% { transform: translate(1px, -1px); }
+  6% { transform: translate(0); }
+  100% { transform: translate(0); }
+}
+
+.animate-glitch-subtle {
+  animation: glitch 2s linear infinite;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   BODY
+   ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+body {
+  margin: 0;
+  background-color: var(--cmd-navy);
+  color: var(--cmd-cream);
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.8s var(--transition-tactical);
+}
+
+@keyframes scanning-beam {
+  0% { transform: translateY(-100%); opacity: 0; }
+  50% { opacity: 0.5; }
+  100% { transform: translateY(100%); opacity: 0; }
+}
+
+.animate-scan-slow {
+  animation: scanning-beam 3s linear infinite;
+}
+
+.animate-pulse-cyan {
+  animation: pulse-cyan 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes pulse-cyan {
+  0%, 100% { opacity: 1; filter: drop-shadow(0 0 2px var(--cmd-yellow)); }
+  50% { opacity: 0.5; filter: drop-shadow(0 0 10px var(--cmd-yellow)); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   FONT HELPERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.font-headline { font-family: 'Inter', sans-serif; }
+.font-mono     { font-family: 'JetBrains Mono', monospace; }
+.font-body     { font-family: 'Outfit', sans-serif; }
+.font-label    { font-family: 'JetBrains Mono', monospace; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   GLASS SURFACE
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.glass-panel-tactical {
+  background: rgba(10, 10, 10, 0.72);
+  backdrop-filter: var(--surface-blur);
+  -webkit-backdrop-filter: var(--surface-blur);
+  border: 1px solid var(--cmd-border);
+  box-shadow: 0 16px 48px rgba(0,0,0,0.55);
+  transition: border-color 0.4s var(--transition-tactical),
+              box-shadow 0.4s var(--transition-tactical);
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   TACT GRID & CRT
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.tech-grid-complex {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.crt-overlay {
+  position: fixed;
+  inset: 0;
+  background:
+    linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0,0.06) 50%),
+    linear-gradient(90deg, rgba(255,255,255,0.01), rgba(255,255,255,0.005), rgba(255,255,255,0.01));
+  background-size: 100% 3px, 3px 100%;
+  pointer-events: none;
+  z-index: 9999;
+  opacity: 0.15;
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   SCROLLBAR
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+::-webkit-scrollbar       { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: var(--cmd-navy); }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.08); border-radius: 10px; }
+::-webkit-scrollbar-thumb:hover { background: var(--cmd-yellow); }
+.scrollbar-none           { scrollbar-width: none; }
+.scrollbar-none::-webkit-scrollbar { display: none; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   KEYFRAMES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@keyframes scan-line {
+  0%   { transform: translateY(-100%); opacity: 0; }
+  50%  { opacity: 0.5; }
+  100% { transform: translateY(200%); opacity: 0; }
+}
+
+@keyframes scan-line-slow {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(200%); }
+}
+
+@keyframes pulse-glow {
+  0%, 100% { opacity: 0.7; filter: drop-shadow(0 0 6px var(--cmd-yellow)); }
+  50%       { opacity: 1;   filter: drop-shadow(0 0 18px var(--cmd-yellow)); }
+}
+
+@keyframes float-tech {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes fade-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   ANIMATION UTILITY CLASSES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.animate-scan-fast         { animation: scan-line 4s linear infinite; }
+.animate-scan-slow         { animation: scan-line-slow 6s linear infinite; }
+.animate-pulse-glow        { animation: pulse-glow 3s ease-in-out infinite; }
+.animate-float-tech        { animation: float-tech 6s ease-in-out infinite; }
+.animate-fade-in           { animation: fade-in 0.5s ease-out forwards; }
+.animate-fade-in-up        { animation: fade-in 0.6s ease-out forwards; }
+.animate-spin-slow         { animation: spin-slow 20s linear infinite; }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   MISC HELPERS
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+.glow-text-primary { text-shadow: 0 0 12px var(--cmd-yellow); }
+
+.tactical-node-active {
+  width: 10px;
+  height: 10px;
+  background: var(--cmd-yellow);
+  border-radius: 50%;
+  box-shadow: 0 0 15px var(--cmd-yellow);
+}
