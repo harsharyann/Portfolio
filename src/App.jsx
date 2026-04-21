@@ -15,6 +15,7 @@ import { AuthProvider } from './context/AuthContext';
 import { ConfigProvider, useConfig } from './context/ConfigContext';
 import SpaceEngine from './components/SpaceEngine';
 import GlobalFX from './components/GlobalFX';
+import GlobalAmbient from './components/GlobalAmbient';
 
 /* ── THEME MANAGER ── */
 const ThemeManager = () => {
@@ -89,15 +90,15 @@ const AppInner = () => {
   return (
     <Router>
       <div className="min-h-screen text-[var(--cmd-accent)] overflow-x-hidden selection:bg-[var(--cmd-accent)] selection:text-black transition-colors duration-1000 bg-[var(--cmd-navy)]">
+        <GlobalAmbient />
         <ThemeManager />
         <GlobalFX />
         <div className="crt-overlay pointer-events-none" />
 
         <Routes>
           <Route path="/dashboard" element={
-            <div className="flex flex-col relative">
-              <Navbar />
-              <main className="flex-1 min-w-0 relative z-10">
+            <div className="flex flex-col relative h-screen overflow-hidden">
+              <main className="flex-1 min-w-0 relative z-10 overflow-y-auto scrollbar-none">
                 <Dashboard />
               </main>
             </div>
