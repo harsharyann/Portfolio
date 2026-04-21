@@ -100,10 +100,7 @@ const Experience = () => {
         {/* ── EXP HERO ── */}
         <header className="mb-20 sm:mb-32 relative text-center px-4">
 
-           <div className="flex items-center justify-center gap-4 mb-4">
-              <Zap size={14} className="text-white/40 animate-pulse" />
-              <span className="text-[9px] sm:text-[10px] font-mono text-white/40 tracking-[0.4em] sm:tracking-[0.8em] uppercase font-bold text-white">CHRONICLE_01</span>
-           </div>
+
            <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-4">
               {config.pageHeaders?.experience?.line1 || 'OPERATIONAL_'}<span className="text-white/20">{config.pageHeaders?.experience?.line2 || 'ARC'}</span>
            </h1>
