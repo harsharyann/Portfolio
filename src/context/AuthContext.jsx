@@ -4,19 +4,32 @@ const AuthContext = createContext();
 
 export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(() => {
-    return sessionStorage.getItem('mission_auth_token') === 'STRIKE_CONFIRMED';
+    return sessionStorage.getItem('mission_auth_token') === 'NEXUS_ACCESS_GRANTED';
   });
 
+  const [failedAttempts, setFailedAttempts] = useState(0);
+  const [isLocked, setIsLocked] = useState(false);
+
   const login = (password) => {
-    // Advanced Handshake Logic for v5.0
-    // Default system override: 'operativ77'
-    const system_key = 'ghost77';
+    if (isLocked) return { success: false, error: 'SYSTEM_LOCKED_OUT' };
+
+    const system_key = 'ghost77'; // Fallback key
+    
     if (password === system_key) {
       setIsAuthenticated(true);
-      sessionStorage.setItem('mission_auth_token', 'STRIKE_CONFIRMED');
-      return true;
+      setFailedAttempts(0);
+      sessionStorage.setItem('mission_auth_token', 'NEXUS_ACCESS_GRANTED');
+      return { success: true };
+    } else {
+      const newAttempts = failedAttempts + 1;
+      setFailedAttempts(newAttempts);
+      if (newAttempts >= 3) {
+        setIsLocked(true);
+        setTimeout(() => { setIsLocked(false); setFailedAttempts(0); }, 60000); // 1 min lockout
+        return { success: false, error: 'LOCKOUT_INITIATED' };
+      }
+      return { success: false, error: `INVALID_KEY [${3 - newAttempts} REMAINING]` };
     }
-    return false;
   };
 
   const logout = () => {

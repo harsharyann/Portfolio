@@ -33,8 +33,18 @@ const ThemeManager = () => {
     root.style.setProperty('--cmd-grid-color', theme.grid);
     root.style.setProperty('--cmd-panel', theme.panel);
     
-    // Also update body background for seamless transitions
+    // Adaptive Attributes
+    root.style.setProperty('--cmd-font', theme.font || "'Inter', sans-serif");
+    root.style.setProperty('--cmd-noise', theme.fx?.noise ? theme.fx.noise.toString() : '0.02');
+    root.setAttribute('data-segment', theme.segment || 'VOID');
+    
+    // Global FX toggles via CSS variables (read by GlobalAmbient/GlobalFX)
+    root.style.setProperty('--fx-stars', theme.fx?.stars ? '1' : '0');
+    root.style.setProperty('--fx-nebula', theme.fx?.nebula ? '1' : '0');
+    root.style.setProperty('--fx-scanlines', theme.fx?.scanlines ? '1' : '0');
+    
     document.body.style.backgroundColor = theme.navy;
+    document.body.style.fontFamily = theme.font || "'Inter', sans-serif";
   }, [config.theme]);
 
   return null;

@@ -7,6 +7,7 @@ import {
   Plus, Trash2, Save, RefreshCw, Eye, EyeOff, Layers, Code, Share2
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import GlobalAmbient from '../components/GlobalAmbient';
 
 /* ─── TECHNICAL ICON LIBRARY ─────────────────────────── */
 const ICON_LIBRARY = [
@@ -50,19 +51,6 @@ const Input = ({ value, onChange, placeholder, type = 'text' }) => (
     placeholder={placeholder || ''}
     className="w-full bg-black/40 border border-white/10 text-white font-mono text-sm px-5 py-4 focus:outline-none focus:border-white/30 tracking-wider transition-all placeholder:text-white/10"
   />
-);
-
-const Select = ({ value, onChange, options }) => (
-  <select
-    value={value || ''}
-    onChange={e => onChange(e.target.value)}
-    className="w-full bg-black/40 border border-white/10 text-white font-mono text-sm px-5 py-4 focus:outline-none focus:border-white/30 tracking-wider transition-all"
-  >
-    <option value="" disabled className="text-white/20">Select Option</option>
-    {options.map(opt => (
-      <option key={opt.value} value={opt.value}>{opt.label}</option>
-    ))}
-  </select>
 );
 
 const Textarea = ({ value, onChange, placeholder, rows = 4 }) => (
@@ -162,7 +150,7 @@ const SkillCatEditor = ({ cat, onChange, onDelete }) => (
                 onChange={e => {
                    const n = [...cat.skills];
                    if (e.target.value === 'CUSTOM') {
-                      // Keep it as is or empty
+                      // Keep it as is
                    } else {
                       n[i].icon = e.target.value;
                       if (!n[i].name) n[i].name = ICON_LIBRARY.find(ic => ic.url === e.target.value)?.name || '';
@@ -204,30 +192,63 @@ const Dashboard = () => {
 
   const flash = (key) => { setSaved(s => ({ ...s, [key]: true })); setTimeout(() => setSaved(s => ({ ...s, [key]: false })), 2000); };
 
-  if (!isAuthenticated) {
-    return (
-      <div className="min-h-screen flex items-center justify-center p-6 bg-[#030303] tech-grid-complex">
-        <div className="w-full max-w-sm glass-panel-tactical p-10 space-y-8 text-center relative overflow-hidden">
-          <div className="absolute top-0 left-1/2 -translate-x-1/2 w-32 h-[1px] bg-gradient-to-r from-transparent via-white/40 to-transparent" />
-          <Lock size={32} className="mx-auto text-white animate-pulse shadow-[0_0_20px_white]" />
-          <h1 className="font-headline text-2xl tracking-[0.4em] font-black text-white uppercase italic">Command_Handshake</h1>
-          <form onSubmit={(e) => { e.preventDefault(); if(login(password)) setAuthError(false); else setAuthError(true); }} className="space-y-6 text-left">
-            <Field label="Access_Token">
-              <input 
-                type="password" value={password} onChange={e => setPassword(e.target.value)}
-                className={`w-full bg-black/40 border-b-2 ${authError ? 'border-red-500' : 'border-white/10'} py-4 px-2 font-mono text-xl tracking-[0.5em] text-white outline-none focus:border-white transition-all`}
-                autoFocus
-              />
-            </Field>
-            <button type="submit" className="w-full py-5 bg-white text-black font-headline font-black text-[11px] tracking-[0.4em] uppercase hover:bg-[var(--cmd-glow)] transition-all">
-              EXECUTE_UPLINK
-            </button>
-          </form>
-          <p className="text-[10px] text-white/5 font-mono">ROOT_LEVEL_AUTHORITY_REQUIRED</p>
-        </div>
-      </div>
-    );
-  }
+  const handleLogin = () => {
+    const result = login(password);
+    if (!result.success) {
+      setAuthError(result.error);
+      setPassword('');
+    } else {
+      setAuthError(false);
+    }
+  };
+
+  if (!isAuthenticated) return (
+    <div className="min-h-screen bg-black flex items-center justify-center p-6 relative overflow-hidden">
+       <GlobalAmbient />
+       <div className="absolute inset-x-0 h-px bg-white/5 top-1/2" />
+       
+       <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="blueprint-panel p-10 bg-black/80 border-white/10 w-full max-w-md relative z-10 backdrop-blur-xl">
+          <div className="flex flex-col items-center gap-6 text-center mb-10">
+             <div className="w-16 h-16 border border-white/20 flex items-center justify-center bg-white/[0.03]">
+                <Shield size={24} className={authError ? "text-red-500 animate-pulse" : "text-white/40"} />
+             </div>
+             <div className="flex flex-col gap-2">
+                <span className="text-[10px] font-mono tracking-[0.6em] text-white/40 uppercase">GATEWAY_Handshake</span>
+                <h1 className="text-xl font-headline font-black text-white uppercase tracking-tighter">Enter Operational Key</h1>
+             </div>
+          </div>
+
+          <div className="flex flex-col gap-4">
+             <div className="relative group">
+                <input 
+                   type="password" 
+                   value={password}
+                   onChange={(e) => setPassword(e.target.value)}
+                   onKeyDown={(e) => e.key === 'Enter' && handleLogin()}
+                   placeholder="COMMAND_KEY_"
+                   className="w-full bg-black/50 border border-white/10 px-6 py-4 font-mono text-[11px] text-white focus:outline-none focus:border-white transition-all placeholder:text-white/10"
+                />
+                <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none opacity-20">
+                   <Terminal size={14} />
+                </div>
+             </div>
+             
+             <button 
+                onClick={handleLogin}
+                className="w-full py-4 bg-white text-black font-black font-mono text-[10px] uppercase tracking-[0.4em] hover:bg-white/80 transition-all flex items-center justify-center gap-4"
+             >
+                INITIATE_AUTH <Activity size={14} />
+             </button>
+
+             {authError && (
+                <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="mt-4 p-4 bg-red-500/10 border border-red-500/20 text-red-500 font-mono text-[8.5px] uppercase tracking-widest text-center">
+                   {authError}
+                </motion.div>
+             )}
+          </div>
+       </motion.div>
+    </div>
+  );
 
   // ── LOCAL DRAFT STATE ──
   const [profile, setProfile] = useState({ ...config.profile });
