@@ -74,7 +74,7 @@ const Home = () => {
       <div className="max-w-[1700px] mx-auto w-full flex flex-col gap-10 relative z-10">
 
         {/* HERO SECTION */}
-        <section className="w-full lg:h-[500px] flex flex-col">
+        <section className="w-full min-h-[450px] lg:h-[500px] flex flex-col">
            <div className="blueprint-panel flex-1 bg-blueprint relative group overflow-hidden border-white/10 shadow-2xl transition-all duration-700 hover:border-white/20">
               <SpaceTrafficEngine />
               <div className="absolute inset-0 border-[1px] border-white/5 pointer-events-none m-4" />

@@ -72,8 +72,8 @@ const Navbar = () => {
           }`}
         >
           {/* ── BRANDING (Now Inside Navbar to prevent overlap) ── */}
-          <div className="flex flex-col min-w-0">
-            <h2 className="font-headline font-black text-xs sm:text-base tracking-tighter text-[var(--cmd-accent)] uppercase flex items-center gap-2 truncate">
+          <div className="flex flex-col min-w-0 flex-shrink">
+            <h2 className="font-headline font-black text-[11px] sm:text-base tracking-tighter text-[var(--cmd-accent)] uppercase flex items-center gap-2 truncate">
               Harsh <span className="text-[var(--cmd-accent)] opacity-30 hidden sm:inline">Aryan</span>
             </h2>
             <div className="flex items-center gap-2 font-mono text-[6px] sm:text-[7px] text-[var(--cmd-accent)] opacity-30 tracking-[0.3em] uppercase">
@@ -112,19 +112,19 @@ const Navbar = () => {
 
           <button
             onClick={() => setMobileOpen(v => !v)}
-            className="md:hidden flex flex-col gap-1.5 p-3 group/ham ml-auto"
+            className="md:hidden flex flex-col gap-1 px-3 py-4 group/ham ml-2 flex-shrink-0"
           >
             <motion.div 
-               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
-               className="w-6 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
+               animate={mobileOpen ? { rotate: 45, y: 6 } : { rotate: 0, y: 0 }}
+               className="w-5 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
             />
             <motion.div 
                animate={mobileOpen ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
-               className="w-4 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 self-end transition-all" 
+               className="w-3 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 self-end transition-all" 
             />
             <motion.div 
-               animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
-               className="w-6 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
+               animate={mobileOpen ? { rotate: -45, y: -6 } : { rotate: 0, y: 0 }}
+               className="w-5 h-[1.5px] bg-[var(--cmd-accent)] opacity-40 group-hover/ham:opacity-100 transition-all" 
             />
           </button>
         </motion.nav>
