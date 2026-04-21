@@ -357,7 +357,7 @@ export const ConfigProvider = ({ children }) => {
   };
 
   return (
-    <ConfigContext.Provider value={{ config, updateConfig }}>
+    <ConfigContext.Provider value={{ config, updateConfig, THEME_PRESETS }}>
       {children}
     </ConfigContext.Provider>
   );
