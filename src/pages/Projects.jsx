@@ -151,10 +151,7 @@ const Projects = () => {
       <div className="max-w-[1700px] mx-auto w-full relative z-10">
         <header className="mb-24 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-10">
            <div className="max-w-4xl text-center lg:text-left">
-              <div className="flex items-center justify-center lg:justify-start gap-4 mb-6">
-                 <Box size={14} className="text-white/40 animate-pulse" />
-                 <span className="text-[10px] font-mono text-white/40 tracking-[0.8em] uppercase">COLLECTION_REGISTRY</span>
-              </div>
+
               <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
                  {config.pageHeaders?.projects?.line1 || 'ARTIFACT_'}<span className="text-white/20">{config.pageHeaders?.projects?.line2 || 'REGISTRY'}</span>
               </h1>
