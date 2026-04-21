@@ -200,7 +200,7 @@ const Dashboard = () => {
   const [password, setPassword] = useState('');
   const [authError, setAuthError] = useState(false);
   const [saved, setSaved] = useState({});
-  const [activeTab, setActiveTab] = useState('THEME');
+  const [activeTab, setActiveTab] = useState('INTERFACE');
 
   const flash = (key) => { setSaved(s => ({ ...s, [key]: true })); setTimeout(() => setSaved(s => ({ ...s, [key]: false })), 2000); };
 
@@ -242,13 +242,13 @@ const Dashboard = () => {
   const save = (key, data) => { updateConfig({ [key]: data }); flash(key); };
 
   const tabs = [
-    { id: 'THEME', label: 'Visual_Core', icon: Activity },
-    { id: 'IDENTITY', label: 'User_Profile', icon: User },
     { id: 'INTERFACE', label: 'Site_Headers', icon: Monitor },
+    { id: 'IDENTITY', label: 'User_Profile', icon: User },
     { id: 'TIMELINE', label: 'Exp_Matrix', icon: Layers },
     { id: 'REGISTRY', label: 'Proj_Vault', icon: Code },
     { id: 'MODULES', label: 'Skill_Nodes', icon: Terminal },
-    { id: 'SIGNAL', label: 'Comms_Uplink', icon: Share2 }
+    { id: 'SIGNAL', label: 'Comms_Uplink', icon: Share2 },
+    { id: 'THEME', label: 'Visual_Core', icon: Activity }
   ];
 
   return (
