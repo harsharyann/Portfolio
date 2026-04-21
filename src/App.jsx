@@ -95,11 +95,16 @@ const PortfolioLayout = () => {
   );
 };
 
+import CustomCursor from './components/CustomCursor';
+import TacticalHUD from './components/TacticalHUD';
+
 /* Inner app component structure */
 const AppInner = () => {
   return (
     <Router>
       <div className="min-h-screen text-[var(--cmd-accent)] overflow-x-hidden selection:bg-[var(--cmd-accent)] selection:text-black transition-colors duration-1000 bg-[var(--cmd-navy)]">
+        <CustomCursor />
+        <TacticalHUD />
         <GlobalAmbient />
         <ThemeManager />
         <GlobalFX />

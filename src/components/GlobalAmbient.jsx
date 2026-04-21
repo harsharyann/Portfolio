@@ -1,4 +1,4 @@
-import React, { useMemo } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { Rocket, Satellite, Zap, Plane } from 'lucide-react';
 import { useConfig } from '../context/ConfigContext';
@@ -35,8 +35,27 @@ const GlobalAmbient = () => {
         return list;
     }, [isMobile]);
 
+    const [mousePos, setMousePos] = useState({ x: 0, y: 0 });
+
+    useEffect(() => {
+        const handleMouseMove = (e) => {
+            setMousePos({ x: e.clientX, y: e.clientY });
+        };
+        window.addEventListener('mousemove', handleMouseMove);
+        return () => window.removeEventListener('mousemove', handleMouseMove);
+    }, []);
+
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[var(--cmd-navy)]">
+            {/* ── CURSOR SPOTLIGHT ── */}
+            <div 
+                className="absolute inset-0 z-0 opacity-40 transition-opacity duration-1000"
+                style={{
+                    background: `radial-gradient(600px circle at ${mousePos.x}px ${mousePos.y}px, var(--cmd-glow), transparent 40%)`,
+                    opacity: 0.15
+                }}
+            />
+
             {/* ── DYNAMIC STELLAR GRID ── */}
             <div style={{ opacity: 'var(--fx-stars)' }}>
                 {nodes.map(node => (

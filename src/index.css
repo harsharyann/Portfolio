@@ -95,6 +95,11 @@ body {
   font-family: 'Outfit', sans-serif;
   overflow-x: hidden;
   transition: background-color 0.8s var(--transition-tactical);
+  cursor: none !important;
+}
+
+button, a, input, textarea, [role="button"] {
+  cursor: none !important;
 }
 
 @keyframes scanning-beam {

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useLocation } from 'react-router-dom';
 import { Menu, X } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import TextScramble from './TextScramble';
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -88,24 +89,28 @@ const Navbar = () => {
              className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent skew-x-[30deg] pointer-events-none"
           />
 
+
+
           {/* Desktop Links (Hidden on Mobile) */}
           {!isDashboard && (
             <div className="hidden md:flex items-center gap-0.5 sm:gap-1">
               {navLinks.map(link => (
-                <button
-                  key={link.name}
-                  id={`nav-btn-${link.path}`}
-                  onClick={() => scrollTo(link.path)}
-                  className={`px-3 sm:px-6 py-3 text-[9px] sm:text-[10px] font-mono font-black tracking-[0.4em] transition-all uppercase relative group touch-manipulation ${
-                    activeSection === link.path ? 'text-[var(--cmd-accent)]' : 'text-[var(--cmd-accent)] opacity-20 hover:opacity-100'
-                  }`}
-                >
-                  <span className="relative z-10">{link.name}</span>
-                  {activeSection === link.path && (
-                    <motion.div layoutId="nav-active-pill" className="absolute inset-x-2 inset-y-2 bg-[var(--cmd-accent)]/5 border border-[var(--cmd-border)] rounded-sm" />
-                  )}
-                  <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[var(--cmd-accent)] opacity-20 group-hover:w-1/2 transition-all duration-500" />
-                </button>
+                  <button
+                    key={link.name}
+                    id={`nav-btn-${link.path}`}
+                    onClick={() => scrollTo(link.path)}
+                    className={`px-3 sm:px-6 py-3 text-[9px] sm:text-[10px] font-mono font-black tracking-[0.4em] transition-all uppercase relative group touch-manipulation ${
+                      activeSection === link.path ? 'text-[var(--cmd-accent)]' : 'text-[var(--cmd-accent)] opacity-20 hover:opacity-100'
+                    }`}
+                  >
+                    <span className="relative z-10">
+                      <TextScramble text={link.name} />
+                    </span>
+                    {activeSection === link.path && (
+                      <motion.div layoutId="nav-active-pill" className="absolute inset-x-2 inset-y-2 bg-[var(--cmd-accent)]/5 border border-[var(--cmd-border)] rounded-sm" />
+                    )}
+                    <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-[var(--cmd-accent)] opacity-20 group-hover:w-1/2 transition-all duration-500" />
+                  </button>
               ))}
             </div>
           )}
