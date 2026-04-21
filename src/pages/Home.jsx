@@ -66,14 +66,14 @@ const TopLeftBranding = () => {
     return (
         <motion.div
             initial={{ y: -20, opacity: 0 }} animate={{ y: 0, opacity: 1 }}
-            className="absolute top-10 left-10 z-[60] group pointer-events-none"
+            className="absolute top-8 left-6 sm:top-10 sm:left-10 z-[60] group pointer-events-none"
         >
             <div className="relative pointer-events-auto">
                 <div className="absolute -left-4 top-1 h-full w-[1.5px] bg-white/20 group-hover:h-[120%] transition-all duration-500" />
-                <h2 className="font-headline font-black text-2xl tracking-tighter text-white uppercase group-hover:ml-2 transition-all">
+                <h2 className="font-headline font-black text-xl sm:text-2xl tracking-tighter text-white uppercase group-hover:ml-2 transition-all">
                     Harsh <span className="text-white/30 group-hover:text-white transition-colors">Aryan</span>
                 </h2>
-                <div className="flex items-center gap-3 mt-1.5 font-mono text-[9px] text-white/40 tracking-[0.4em] uppercase">
+                <div className="flex items-center gap-3 mt-1.5 font-mono text-[8px] sm:text-[9px] text-white/40 tracking-[0.4em] uppercase">
                     <Clock />
                     <motion.div animate={{ opacity: [0.2, 1, 0.2] }} transition={{ duration: 2, repeat: Infinity }} className="w-0.5 h-0.5 bg-white rounded-full shadow-[0_0_8px_#fff]" />
                 </div>
@@ -97,17 +97,17 @@ const Home = () => {
            <div className="blueprint-panel flex-1 bg-blueprint relative group overflow-hidden border-white/10 shadow-2xl transition-all duration-700 hover:border-white/20">
               <SpaceTrafficEngine />
               <div className="absolute inset-0 border-[1px] border-white/5 pointer-events-none m-4" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-12 text-center pointer-events-none">
-                 <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="relative px-12 py-10 pointer-events-auto">
-                    <div className="absolute top-0 left-0 w-10 h-10 border-t border-l border-white/30" />
-                    <div className="absolute bottom-0 right-0 w-10 h-10 border-b border-r border-white/30" />
-                    <h1 className="font-headline font-black uppercase text-white leading-[0.8] tracking-tighter" style={{ fontSize: 'clamp(2.5rem, 8vw, 7rem)' }}>
+               <div className="absolute inset-0 flex flex-col items-center justify-center p-6 sm:p-12 text-center pointer-events-none">
+                  <motion.div initial={{ opacity: 0, y: 15 }} animate={{ opacity: 1, y: 0 }} className="relative px-6 sm:px-12 py-8 sm:py-10 pointer-events-auto">
+                    <div className="absolute top-0 left-0 w-8 h-8 sm:w-10 sm:h-10 border-t border-l border-white/30" />
+                    <div className="absolute bottom-0 right-0 w-8 h-8 sm:w-10 sm:h-10 border-b border-r border-white/30" />
+                    <h1 className="font-headline font-black uppercase text-white leading-[0.8] tracking-tighter" style={{ fontSize: 'clamp(2.5rem, 9vw, 7rem)' }}>
                        {config.pageHeaders?.home?.line1 || 'DESIGNING'}<br/>
-                       <span className="text-transparent px-4 inline-block mt-4" style={{ WebkitTextStroke: '1.5px #ffffff' }}>
+                       <span className="text-transparent px-2 sm:px-4 inline-block mt-4" style={{ WebkitTextStroke: '1px #ffffff' }}>
                           {config.pageHeaders?.home?.line2 || 'SYSTEMS'}
                        </span>
                     </h1>
-                 </motion.div>
+                  </motion.div>
 
                  <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.4 }} className="max-w-xl mt-12 pointer-events-auto flex flex-col items-center gap-8">
                     <p className="font-mono text-[11px] text-white/40 tracking-[0.5em] leading-relaxed uppercase font-bold min-h-[40px]">

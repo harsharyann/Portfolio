@@ -8,7 +8,7 @@ const ExperienceNode = ({ exp, index }) => (
     initial={{ x: index % 2 === 0 ? -50 : 50, opacity: 0 }}
     whileInView={{ x: 0, opacity: 1 }}
     transition={{ duration: 0.8, delay: index * 0.1 }}
-    className={`relative mb-24 flex flex-col ${index % 2 === 0 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'} group`}
+    className={`relative mb-16 sm:mb-24 flex flex-col ${index % 2 === 0 ? 'md:items-end md:text-right' : 'md:items-start md:text-left'} group`}
   >
     {/* Node Connector (Electric Pulse Point) */}
     <div className="hidden md:block absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20">
@@ -98,16 +98,16 @@ const Experience = () => {
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         
         {/* ── EXP HERO ── */}
-        <header className="mb-32 relative text-center">
-           <div className="absolute -top-12 left-1/2 -translate-x-1/2 text-white/[0.02] text-[15rem] font-black pointer-events-none select-none tracking-tighter">HISTORY</div>
+        <header className="mb-20 sm:mb-32 relative text-center px-4">
+           <div className="absolute -top-6 sm:-top-12 left-1/2 -translate-x-1/2 text-white/[0.02] text-[6rem] sm:text-[15rem] font-black pointer-events-none select-none tracking-tighter">HISTORY</div>
            <div className="flex items-center justify-center gap-4 mb-4">
-              <Zap size={16} className="text-white/40 animate-pulse" />
-              <span className="text-[10px] font-mono text-white/40 tracking-[0.8em] uppercase font-bold text-white">CHRONICLE_01</span>
+              <Zap size={14} className="text-white/40 animate-pulse" />
+              <span className="text-[9px] sm:text-[10px] font-mono text-white/40 tracking-[0.4em] sm:tracking-[0.8em] uppercase font-bold text-white">CHRONICLE_01</span>
            </div>
-           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-4">
+           <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-4">
               {config.pageHeaders?.experience?.line1 || 'OPERATIONAL_'}<span className="text-white/20">{config.pageHeaders?.experience?.line2 || 'ARC'}</span>
            </h1>
-           <p className="text-[12px] font-mono text-white/30 tracking-[0.4em] uppercase max-w-xl mx-auto italic">
+           <p className="text-[10px] sm:text-[12px] font-mono text-white/30 tracking-[0.2em] sm:tracking-[0.4em] uppercase max-w-xl mx-auto italic">
               Tracing the signal through structural iterations and technological evolution.
            </p>
         </header>

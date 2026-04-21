@@ -26,7 +26,7 @@ const ProjectCard = ({ proj, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="blueprint-panel group relative flex flex-col min-h-[480px] bg-black border border-white/5 p-10 transition-all duration-500 hover:border-white hover:shadow-[0_0_50px_rgba(255,255,255,0.05)]"
+      className="blueprint-panel group relative flex flex-col bg-black border border-white/5 p-6 sm:p-10 transition-all duration-500 hover:border-white hover:shadow-[0_0_50px_rgba(255,255,255,0.05)]"
     >
       <div className="absolute top-4 right-8 flex items-center gap-3">
          <motion.div 
@@ -42,7 +42,7 @@ const ProjectCard = ({ proj, index }) => {
            <div className="flex items-center gap-2 font-mono text-[8px] text-white/20 tracking-[0.4em] uppercase mb-1">
               <Terminal size={10} /> // ID_MOD_0{index + 1}
            </div>
-           <h3 className="font-headline text-4xl text-white font-black tracking-tighter uppercase leading-none">
+            <h3 className="font-headline text-2xl sm:text-4xl text-white font-black tracking-tighter uppercase leading-none">
               {proj.title}
            </h3>
         </div>
@@ -160,7 +160,7 @@ const Projects = () => {
               </h1>
            </div>
 
-           <div className="flex bg-white/[0.02] border border-white/10 p-1">
+            <div className="flex bg-white/[0.02] border border-white/10 p-1 w-full sm:w-auto">
               {[
                 { id: 'projects', label: 'PROJECTS', icon: Database },
                 { id: 'certificates', label: 'CERTIFICATES', icon: ShieldCheck }
@@ -168,15 +168,15 @@ const Projects = () => {
                 <button 
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`px-10 py-5 flex items-center gap-3 transition-all duration-300 relative ${
+                  className={`flex-1 sm:flex-none px-6 sm:px-10 py-4 sm:py-5 flex items-center justify-center gap-3 transition-all duration-300 relative ${
                     activeTab === tab.id ? 'bg-white text-black font-black' : 'text-white/30 hover:text-white/60'
                   }`}
                 >
-                  <tab.icon size={14} />
-                  <span className="font-mono text-[10px] uppercase tracking-widest font-bold">{tab.label}</span>
+                  <tab.icon size={12} className="sm:size-[14px]" />
+                  <span className="font-mono text-[8.5px] sm:text-[10px] uppercase tracking-widest font-bold">{tab.label}</span>
                 </button>
               ))}
-           </div>
+            </div>
         </header>
 
         <AnimatePresence mode="wait">

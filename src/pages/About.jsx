@@ -55,13 +55,13 @@ const About = () => {
       <div className="max-w-[1700px] mx-auto w-full relative z-10 flex flex-col gap-10">
 
         {/* ── MAIN HERO HEADER [HERO_MAIN] ── */}
-        <section className="w-full blueprint-panel p-10 lg:p-16 bg-white/[0.01] border-white/5 relative group">
+            <section className="w-full blueprint-panel p-6 sm:p-10 lg:p-16 bg-white/[0.01] border-white/5 relative group">
            <div className="absolute top-4 right-6 text-[8px] font-mono text-white/20 tracking-[0.5em] uppercase">SECTION_ID: [HERO_MAIN]</div>
 
            <div className="flex flex-col gap-8">
-              <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none text-center lg:text-left">
-                 {config.pageHeaders?.about?.line1 || 'DATA_DRIVEN'}<span className="text-white/10" style={{ WebkitTextStroke: '1px #ffffff22' }}></span><br/>{config.pageHeaders?.about?.line2 || 'IDENTITY'}
-              </h1>
+               <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none text-center lg:text-left">
+                  {config.pageHeaders?.about?.line1 || 'DATA_DRIVEN'}<br/>{config.pageHeaders?.about?.line2 || 'IDENTITY'}
+               </h1>
 
               {/* SUB HERO [SUB_HERO_V1] */}
               <div className="flex flex-col lg:flex-row items-center gap-6 pt-8 border-t border-white/5">

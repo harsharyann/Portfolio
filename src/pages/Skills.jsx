@@ -64,7 +64,7 @@ const CategoryBlock = ({ cat, idx }) => (
     </div>
 
     {/* Skill Grid */}
-    <div className="grid grid-cols-3 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-3">
+    <div className="grid grid-cols-2 sm:grid-cols-4 md:grid-cols-5 lg:grid-cols-6 xl:grid-cols-8 gap-2 sm:gap-3">
       {(cat.skills || []).filter(s => !s.isHidden).map((skill, i) => (
         <SkillChip key={skill.name || i} skill={skill} i={i} />
       ))}

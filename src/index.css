@@ -225,3 +225,21 @@ body {
   border-radius: 50%;
   box-shadow: 0 0 15px var(--cmd-yellow);
 }
+
+/* ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+   RESPONSIVE OVERRIDES
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━ */
+@media (max-width: 768px) {
+  .section-padding {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+}
+
+@media (max-width: 640px) {
+  .headline-resp {
+    font-size: 3rem !important;
+    line-height: 1 !important;
+    letter-spacing: -0.05em !important;
+  }
+}

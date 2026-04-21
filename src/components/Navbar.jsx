@@ -71,9 +71,17 @@ const Navbar = () => {
              className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent skew-x-[30deg] pointer-events-none"
           />
 
-          {/* ── MINIMALIST NAV LINKS ── */}
+          {/* ── MOBILE TRIGGER (Visible only on very small screens) ── */}
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            className="md:hidden flex p-3 text-white/30 hover:text-white transition-all"
+          >
+            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
+          </button>
+
+          {/* ── MINIMALIST NAV LINKS (Visible only on desktop) ── */}
           {!isDashboard && (
-            <div className="flex items-center gap-0.5 sm:gap-1">
+            <div className="hidden md:flex items-center gap-0.5 sm:gap-1">
               {navLinks.map(link => (
                 <button
                   key={link.name}
@@ -103,14 +111,6 @@ const Navbar = () => {
               ))}
             </div>
           )}
-
-          {/* ── MOBILE TRIGGER (Visible only on very small screens if links overflow) ── */}
-          <button
-            onClick={() => setMobileOpen(v => !v)}
-            className="md:hidden p-3 text-white/30 hover:text-white transition-all hidden" // Hidden for now as links are compact
-          >
-            {mobileOpen ? <X size={20} /> : <Menu size={20} />}
-          </button>
         </motion.nav>
       </div>
 

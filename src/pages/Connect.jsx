@@ -72,11 +72,11 @@ const Connect = () => {
             <Radio size={12} className="text-white/40 animate-pulse" />
             <span className="text-[10px] font-mono text-white/40 tracking-[0.8em] uppercase">SECURE_UPLINK_PROTOCOL</span>
           </div>
-          <div className="flex flex-col lg:flex-row items-end justify-between gap-6">
-            <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
-              {config.pageHeaders?.connect?.line1 || 'UPLINK_'}<span className="text-transparent" style={{ WebkitTextStroke: '1px #ffffff22' }}>{config.pageHeaders?.connect?.line2 || 'SIGNAL'}</span>
+          <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-6">
+            <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
+              {config.pageHeaders?.connect?.line1 || 'UPLINK_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px #ffffff22' }}>{config.pageHeaders?.connect?.line2 || 'SIGNAL'}</span>
             </h1>
-            <p className="text-[11px] font-mono text-white/30 tracking-[0.3em] uppercase max-w-md text-right italic leading-relaxed">
+            <p className="text-[10px] sm:text-[11px] font-mono text-white/30 tracking-[0.2em] sm:tracking-[0.3em] uppercase max-w-md text-center lg:text-right italic leading-relaxed">
               All transmissions are encrypted and routed through secure architecture nodes.
             </p>
           </div>
@@ -88,7 +88,7 @@ const Connect = () => {
 
           {/* LEFT: CONTACT FORM [SIGNAL_FORM] */}
           <div className="lg:col-span-7">
-            <div className="relative bg-black border border-white/5 p-10 lg:p-14 h-full">
+            <div className="relative bg-black border border-white/5 p-6 sm:p-14 h-full">
               <div className="absolute top-4 right-8 text-[7px] font-mono text-white/10 tracking-[0.5em] uppercase">[SIGNAL_FORM]</div>
 
               {/* Form Header */}
