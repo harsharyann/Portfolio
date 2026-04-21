@@ -5,28 +5,35 @@ import { useConfig } from '../context/ConfigContext';
 
 const GlobalAmbient = () => {
     const { config } = useConfig();
-    const themeKey = config.theme || 'AGENT_SPECTER';
+    
+    // Dynamic performance scaling
+    const isMobile = typeof window !== 'undefined' && window.innerWidth < 768;
 
     // Generate static nodes once to avoid re-renders
     const nodes = useMemo(() => {
-        return Array.from({ length: 40 }).map((_, i) => ({
+        const count = isMobile ? 20 : 40; // Halve particles on mobile
+        return Array.from({ length: count }).map((_, i) => ({
             id: i,
             x: Math.random() * 100,
             y: Math.random() * 100,
-            size: Math.random() * 2 + 1,
+            size: Math.random() * 1.5 + 0.5, // Smaller stars on mobile
             duration: Math.random() * 10 + 20,
             delay: Math.random() * 10
         }));
-    }, []);
+    }, [isMobile]);
 
     const assets = useMemo(() => {
-        return [
+        // Reduce moving assets on mobile
+        const list = [
             { icon: Rocket, delay: 0, duration: 25, y: 15 },
-            { icon: Satellite, delay: 8, duration: 35, y: 65 },
-            { icon: Plane, delay: 15, duration: 45, y: 40 },
-            { icon: Zap, delay: 4, duration: 20, y: 80 }
+            { icon: Satellite, delay: 8, duration: 35, y: 65 }
         ];
-    }, []);
+        if (!isMobile) {
+            list.push({ icon: Plane, delay: 15, duration: 45, y: 40 });
+            list.push({ icon: Zap, delay: 4, duration: 20, y: 80 });
+        }
+        return list;
+    }, [isMobile]);
 
     return (
         <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden bg-[var(--cmd-navy)]">
@@ -55,6 +62,7 @@ const GlobalAmbient = () => {
                             backgroundColor: 'var(--cmd-accent)',
                             borderRadius: '50%',
                             boxShadow: '0 0 10px var(--cmd-accent)',
+                            willChange: 'transform, opacity'
                         }}
                     />
                 ))}
@@ -79,6 +87,7 @@ const GlobalAmbient = () => {
                         style={{
                             position: 'absolute',
                             top: `${Asset.y}%`,
+                            willChange: 'transform'
                         }}
                         className="flex flex-col items-center gap-2"
                     >
@@ -89,36 +98,40 @@ const GlobalAmbient = () => {
             </div>
 
             {/* ── NEBULA BLOBS (Follows Palette) ── */}
-            <div style={{ opacity: 'var(--fx-nebula)' }}>
-                <motion.div 
-                animate={{ 
-                    scale: [1, 1.2, 1],
-                    opacity: [0.03, 0.08, 0.03],
-                    x: ['-10%', '0%', '-10%'],
-                    y: ['-10%', '0%', '-10%']
-                }}
-                transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] rounded-full opacity-5 pointer-events-none"
-                style={{ 
-                    background: 'radial-gradient(circle, var(--cmd-glow) 0%, transparent 70%)',
-                    filter: 'blur(100px)' 
-                }} 
-                />
-                
-                <motion.div 
-                animate={{ 
-                    scale: [1.2, 1, 1.2],
-                    opacity: [0.02, 0.05, 0.02],
-                    x: ['10%', '0%', '10%'],
-                    y: ['10%', '0%', '10%']
-                }}
-                transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute bottom-[-20%] right-[-20%] w-[70%] h-[70%] rounded-full opacity-5 pointer-events-none"
-                style={{ 
-                    background: 'radial-gradient(circle, var(--cmd-accent) 0%, transparent 70%)',
-                    filter: 'blur(120px)' 
-                }} 
-                />
+            <div style={{ opacity: isMobile ? 0 : 'var(--fx-nebula)' }}>
+                {!isMobile && (
+                    <>
+                        <motion.div 
+                        animate={{ 
+                            scale: [1, 1.2, 1],
+                            opacity: [0.03, 0.08, 0.03],
+                            x: ['-10%', '0%', '-10%'],
+                            y: ['-10%', '0%', '-10%']
+                        }}
+                        transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute top-[-20%] left-[-20%] w-[80%] h-[80%] rounded-full opacity-5 pointer-events-none"
+                        style={{ 
+                            background: 'radial-gradient(circle, var(--cmd-glow) 0%, transparent 70%)',
+                            filter: 'blur(100px)' 
+                        }} 
+                        />
+                        
+                        <motion.div 
+                        animate={{ 
+                            scale: [1.2, 1, 1.2],
+                            opacity: [0.02, 0.05, 0.02],
+                            x: ['10%', '0%', '10%'],
+                            y: ['10%', '0%', '10%']
+                        }}
+                        transition={{ duration: 30, repeat: Infinity, ease: "easeInOut" }}
+                        className="absolute bottom-[-20%] right-[-20%] w-[70%] h-[70%] rounded-full opacity-5 pointer-events-none"
+                        style={{ 
+                            background: 'radial-gradient(circle, var(--cmd-accent) 0%, transparent 70%)',
+                            filter: 'blur(120px)' 
+                        }} 
+                        />
+                    </>
+                )}
             </div>
 
             {/* Scanning Line */}
