@@ -8,6 +8,32 @@ import {
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
+/* ─── TECHNICAL ICON LIBRARY ─────────────────────────── */
+const ICON_LIBRARY = [
+  { name: 'React', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/react/react-original.svg' },
+  { name: 'Next.js', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nextjs/nextjs-original.svg' },
+  { name: 'Node.js', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/nodejs/nodejs-original.svg' },
+  { name: 'TypeScript', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/typescript/typescript-original.svg' },
+  { name: 'JavaScript', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/javascript/javascript-original.svg' },
+  { name: 'Python', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/python/python-original.svg' },
+  { name: 'Django', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/django/django-plain.svg' },
+  { name: 'MongoDB', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/mongodb/mongodb-original.svg' },
+  { name: 'PostgreSQL', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/postgresql/postgresql-original.svg' },
+  { name: 'Tailwind', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/tailwindcss/tailwindcss-original.svg' },
+  { name: 'Docker', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/docker/docker-original.svg' },
+  { name: 'Git', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/git/git-original.svg' },
+  { name: 'GitHub', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/github/github-original.svg' },
+  { name: 'Figma', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/figma/figma-original.svg' },
+  { name: 'VS Code', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vscode/vscode-original.svg' },
+  { name: 'Vercel', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/vercel/vercel-original.svg' },
+  { name: 'Firebase', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/firebase/firebase-original.svg' },
+  { name: 'C++', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/cplusplus/cplusplus-original.svg' },
+  { name: 'Java', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/java/java-original.svg' },
+  { name: 'AWS', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/amazonwebservices/amazonwebservices-plain-wordmark.svg' },
+  { name: 'Three.js', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/threejs/threejs-original.svg' },
+  { name: 'Redux', url: 'https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/redux/redux-original.svg' },
+];
+
 /* ─── Reusable Field Components ─────────────────────────── */
 const Field = ({ label, children }) => (
   <div className="space-y-2">
@@ -123,19 +149,46 @@ const SkillCatEditor = ({ cat, onChange, onDelete }) => (
     <div className="space-y-2 mt-4">
        <div className="text-[8px] uppercase tracking-widest text-white/20 mb-2">Attached_Nodes</div>
        {(cat.skills || []).map((skill, i) => (
-         <div key={i} className="flex gap-2 items-center">
-           <input value={skill.name} onChange={e => {
-             const n = [...cat.skills]; n[i].name = e.target.value; onChange({...cat, skills: n});
-           }} className="flex-1 bg-black/40 border border-white/5 p-2 text-[10px] text-white font-mono" placeholder="Skill Name" />
-           <input value={skill.icon} onChange={e => {
-             const n = [...cat.skills]; n[i].icon = e.target.value; onChange({...cat, skills: n});
-           }} className="flex-[2] bg-black/40 border border-white/5 p-2 text-[10px] text-white font-mono" placeholder="Icon URL" />
+         <div key={i} className="flex gap-2 items-center bg-black/40 border border-white/5 p-3">
+           <div className="flex-1">
+              <input value={skill.name} onChange={e => {
+                const n = [...cat.skills]; n[i].name = e.target.value; onChange({...cat, skills: n});
+              }} className="w-full bg-transparent border-b border-white/10 p-2 text-[10px] text-white font-mono focus:border-white transition-all outline-none" placeholder="Skill Name" />
+           </div>
+           
+           <div className="flex-[2] flex items-center gap-2">
+              <select 
+                value={ICON_LIBRARY.find(ic => ic.url === skill.icon)?.url || 'CUSTOM'} 
+                onChange={e => {
+                   const n = [...cat.skills];
+                   if (e.target.value === 'CUSTOM') {
+                      // Keep it as is or empty
+                   } else {
+                      n[i].icon = e.target.value;
+                      if (!n[i].name) n[i].name = ICON_LIBRARY.find(ic => ic.url === e.target.value)?.name || '';
+                   }
+                   onChange({...cat, skills: n});
+                }}
+                className="bg-black border border-white/10 text-[9px] text-white/60 p-2 font-mono"
+              >
+                <option value="CUSTOM">-- Select Icon --</option>
+                {ICON_LIBRARY.map(lib => (
+                  <option key={lib.url} value={lib.url}>{lib.name}</option>
+                ))}
+              </select>
+              <input value={skill.icon} onChange={e => {
+                const n = [...cat.skills]; n[i].icon = e.target.value; onChange({...cat, skills: n});
+              }} className="flex-1 bg-transparent border-b border-white/10 p-2 text-[9px] text-white/40 font-mono outline-none" placeholder="Manual Icon URL..." />
+           </div>
+
            <button onClick={() => {
              const n = cat.skills.filter((_, j) => j !== i); onChange({...cat, skills: n});
-           }} className="p-2 text-white/10 hover:text-red-400"><Trash2 size={12} /></button>
+           }} className="p-2 text-white/10 hover:text-red-400 transition-colors"><Trash2 size={12} /></button>
          </div>
        ))}
-       <button onClick={() => onChange({...cat, skills: [...(cat.skills||[]), {name:'', icon:''}]})} className="text-[9px] text-white/30 hover:text-white uppercase tracking-widest">+ Add_Node</button>
+       <button onClick={() => onChange({...cat, skills: [...(cat.skills||[]), {name:'', icon:''}]})} className="w-full py-3 border border-dashed border-white/5 text-[9px] text-white/20 hover:text-white hover:border-white/10 transition-all uppercase tracking-widest mt-2 flex items-center justify-center gap-2">
+         <Plus size={10} /> Add_Node_Dependency
+       </button>
     </div>
   </div>
 );
