@@ -58,7 +58,7 @@ const Navbar = () => {
         <motion.nav 
           initial={{ y: -30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          className={`pointer-events-auto flex items-center justify-center px-2 sm:px-6 py-2 rounded-sm border transition-all duration-700 relative overflow-hidden ${
+          className={`pointer-events-auto flex items-center justify-between w-full max-w-[95%] sm:max-w-none sm:w-auto px-4 sm:px-6 py-2 rounded-sm border transition-all duration-700 relative overflow-hidden ${
             scrolled
               ? 'bg-black/95 border-white/20 shadow-[0_32px_80px_rgba(0,0,0,1)]'
               : 'bg-black/20 border-white/10 backdrop-blur-lg'
@@ -71,15 +71,7 @@ const Navbar = () => {
              className="absolute inset-y-0 w-32 bg-gradient-to-r from-transparent via-white/[0.03] to-transparent skew-x-[30deg] pointer-events-none"
           />
 
-          {/* ── MOBILE TRIGGER (Visible only on very small screens) ── */}
-          <button
-            onClick={() => setMobileOpen(v => !v)}
-            className="md:hidden flex p-3 text-white/30 hover:text-white transition-all"
-          >
-            {mobileOpen ? <X size={18} /> : <Menu size={18} />}
-          </button>
-
-          {/* ── MINIMALIST NAV LINKS (Visible only on desktop) ── */}
+          {/* Desktop Links (Hidden on Mobile) */}
           {!isDashboard && (
             <div className="hidden md:flex items-center gap-0.5 sm:gap-1">
               {navLinks.map(link => (
@@ -92,25 +84,33 @@ const Navbar = () => {
                   }`}
                 >
                   <span className="relative z-10">{link.name}</span>
-                  
-                  {/* Subtle indicator for active state */}
-                  <AnimatePresence mode="wait">
-                    {activeSection === link.path && (
-                      <motion.div 
-                        layoutId="nav-active-pill"
-                        initial={{ opacity: 0 }}
-                        animate={{ opacity: 1 }}
-                        className="absolute inset-x-2 inset-y-2 bg-white/[0.03] border border-white/5 rounded-sm"
-                      />
-                    )}
-                  </AnimatePresence>
-
-                  {/* Hover underline */}
+                  {activeSection === link.path && (
+                    <motion.div layoutId="nav-active-pill" className="absolute inset-x-2 inset-y-2 bg-white/[0.03] border border-white/5 rounded-sm" />
+                  )}
                   <div className="absolute bottom-1 left-1/2 -translate-x-1/2 w-0 h-[1px] bg-white/20 group-hover:w-1/2 transition-all duration-500" />
                 </button>
               ))}
             </div>
           )}
+
+          {/* ── UNIQUE TACTICAL TRIGGER (Mobile Only) ── */}
+          <button
+            onClick={() => setMobileOpen(v => !v)}
+            className="md:hidden flex flex-col gap-1.5 p-3 group/ham"
+          >
+            <motion.div 
+               animate={mobileOpen ? { rotate: 45, y: 8 } : { rotate: 0, y: 0 }}
+               className="w-6 h-[1.5px] bg-white/40 group-hover/ham:bg-white transition-colors" 
+            />
+            <motion.div 
+               animate={mobileOpen ? { opacity: 0, x: 20 } : { opacity: 1, x: 0 }}
+               className="w-4 h-[1.5px] bg-white/40 group-hover/ham:bg-white self-end transition-colors" 
+            />
+            <motion.div 
+               animate={mobileOpen ? { rotate: -45, y: -8 } : { rotate: 0, y: 0 }}
+               className="w-6 h-[1.5px] bg-white/40 group-hover/ham:bg-white transition-colors" 
+            />
+          </button>
         </motion.nav>
       </div>
 
