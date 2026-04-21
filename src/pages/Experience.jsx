@@ -99,7 +99,7 @@ const Experience = () => {
         
         {/* ── EXP HERO ── */}
         <header className="mb-20 sm:mb-32 relative text-center px-4">
-           <div className="absolute -top-6 sm:-top-12 left-1/2 -translate-x-1/2 text-white/[0.02] text-[6rem] sm:text-[15rem] font-black pointer-events-none select-none tracking-tighter">HISTORY</div>
+
            <div className="flex items-center justify-center gap-4 mb-4">
               <Zap size={14} className="text-white/40 animate-pulse" />
               <span className="text-[9px] sm:text-[10px] font-mono text-white/40 tracking-[0.4em] sm:tracking-[0.8em] uppercase font-bold text-white">CHRONICLE_01</span>
