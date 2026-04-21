@@ -85,9 +85,7 @@ const Skills = () => {
       {/* ── HERO ── */}
       <header className="mb-24">
         <div className="flex items-center gap-4 mb-6">
-          <div className="w-10 h-[1px] bg-white/20" />
-          <Terminal size={12} className="text-white/40" />
-          <span className="text-[10px] font-mono text-white/40 tracking-[0.8em] uppercase">TECH_MATRIX_v9.0</span>
+
         </div>
         <div className="flex flex-col lg:flex-row items-end justify-between gap-6">
           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
