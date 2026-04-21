@@ -1,4 +1,5 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
+import { supabase } from '../utils/supabase';
 
 const ConfigContext = createContext();
 
@@ -165,16 +166,54 @@ export const INITIAL_CONFIG = {
 
 export const ConfigProvider = ({ children }) => {
   const [config, setConfig] = useState(() => {
+    // Try to load local first for immediate render
     const saved = localStorage.getItem('portfolio_config');
     return saved ? JSON.parse(saved) : INITIAL_CONFIG;
   });
 
   useEffect(() => {
-    localStorage.setItem('portfolio_config', JSON.stringify(config));
-  }, [config]);
+    const loadConfig = async () => {
+      try {
+        const { data, error } = await supabase
+          .from('portfolio_config')
+          .select('data')
+          .eq('id', 1)
+          .single();
+
+        if (error && error.code !== 'PGRST116') {
+          console.error('Supabase fetch error:', error);
+          return;
+        }
+
+        if (data && data.data && Object.keys(data.data).length > 0) {
+          setConfig(data.data);
+          localStorage.setItem('portfolio_config', JSON.stringify(data.data));
+        }
+      } catch (err) {
+        console.error('Error loading config:', err);
+      }
+    };
+
+    loadConfig();
+  }, []);
 
   const updateConfig = (newConfig) => {
-    setConfig(prev => ({ ...prev, ...newConfig }));
+    setConfig(prev => {
+      const updated = { ...prev, ...newConfig };
+      
+      // Update local storage for immediate persistence
+      localStorage.setItem('portfolio_config', JSON.stringify(updated));
+      
+      // Sync to Supabase
+      supabase
+        .from('portfolio_config')
+        .upsert({ id: 1, data: updated })
+        .then(({ error }) => {
+          if (error) console.error("Supabase Save Error:", error);
+        });
+
+      return updated;
+    });
   };
 
   return (
