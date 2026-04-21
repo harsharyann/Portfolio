@@ -56,7 +56,7 @@ const About = () => {
 
         {/* ── MAIN HERO HEADER [HERO_MAIN] ── */}
             <section className="w-full blueprint-panel p-6 sm:p-10 lg:p-16 bg-white/[0.01] border-white/5 relative group">
-           <div className="absolute top-4 right-6 text-[8px] font-mono text-white/20 tracking-[0.5em] uppercase">SECTION_ID: [HERO_MAIN]</div>
+
 
            <div className="flex flex-col gap-8">
                <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none text-center lg:text-left">
@@ -73,10 +73,6 @@ const About = () => {
                     "Architecting future systems through neural logic and high-performance data synthesis."
                  </p>
                  <div className="lg:ml-auto flex items-center gap-6">
-                    <div className="flex flex-col items-end">
-                       <span className="text-[8px] font-mono text-white/10 uppercase">Node_Status</span>
-                       <span className="text-[10px] font-mono text-[#00ff8d] tracking-widest">ACTIVE_v9</span>
-                    </div>
                     <Cpu size={20} className="text-white/20" />
                  </div>
               </div>
@@ -89,7 +85,7 @@ const About = () => {
            {/* 1. PERSONNEL IDENTIFIER [IDENT_CARD] */}
            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:col-span-3 flex flex-col gap-6">
               <div className="relative group p-[1px] bg-white/10 border border-white/5">
-                 <div className="absolute top-2 right-4 text-[7px] font-mono text-white/30 tracking-widest uppercase z-20">IDENT_CARD</div>
+                 
                  <div className="relative bg-black p-2 border border-white/10 overflow-hidden">
                     <div className="relative w-full aspect-[3/4] overflow-hidden grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 transition-all duration-1000">
                        <img src={photoUrl} alt="" className="w-full h-full object-cover" />
@@ -99,7 +95,7 @@ const About = () => {
               </div>
 
               <div className="blueprint-panel p-6 bg-white/[0.02] border-white/10 relative">
-                 <div className="absolute top-2 right-4 text-[7px] font-mono text-white/20 uppercase tracking-widest">[ID_CORE]</div>
+                 
                  <h2 className="text-3xl font-headline font-black text-white uppercase tracking-tighter leading-none mb-4">{name}</h2>
                  <div className="flex flex-wrap gap-2 uppercase font-black text-[8px]">
                     {['CEO', 'FOUNDER', 'ARCHITECT'].map((r) => (
@@ -112,7 +108,7 @@ const About = () => {
            {/* 2. CORE PROCESSING FEED [SYSTEM_NARRATIVE] */}
            <div className="lg:col-span-6">
               <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="blueprint-panel bg-white/[0.01] border-white/5 p-10 h-full flex flex-col relative">
-                 <div className="absolute top-4 right-8 text-[7px] font-mono text-white/20 tracking-[0.5em] uppercase">[SYSTEM_NARRATIVE]</div>
+                 
 
                  {/* Typing text paragraphs */}
                  <div className="text-xs md:text-sm font-mono leading-loose text-white/50 tracking-wider uppercase italic space-y-10 py-6 flex-1">
@@ -130,7 +126,7 @@ const About = () => {
            {/* 3. ETHOS / QUOTE MODULE [VISION_DATA] */}
            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:col-span-3 flex flex-col gap-6">
               <div className="blueprint-panel bg-black border-l-4 border-white/40 p-10 flex-1 flex flex-col justify-between relative">
-                 <div className="absolute top-4 right-6 text-[7px] font-mono text-white/30 tracking-widest uppercase">[VISION_DATA]</div>
+                 
 
                  {/* Quote Block with typing effect */}
                  <div className="flex flex-col gap-3 pt-4">
@@ -149,7 +145,7 @@ const About = () => {
 
               {/* Executive Status Card [EXEC_CARD] */}
               <div className="relative bg-white/[0.02] border border-white/10 px-6 py-5 flex items-center justify-between group hover:border-white/30 transition-all">
-                 <div className="absolute top-2 right-4 text-[6px] font-mono text-white/10 tracking-[0.4em] uppercase">[EXEC_STATUS]</div>
+                 
                  <div className="flex flex-col gap-1">
                     <span className="text-[8px] font-mono text-white/20 uppercase tracking-[0.4em]">Current Position</span>
                     <span className="text-[13px] font-headline font-black text-white uppercase tracking-tight leading-none">
