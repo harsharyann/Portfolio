@@ -100,7 +100,7 @@ const CertificateCard = ({ cred, index }) => (
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
         
         {/* Section Label */}
-        <div className="absolute top-4 right-6 text-[7px] font-mono text-white/30 tracking-[0.4em] uppercase z-20 bg-black/40 px-2 py-1">CERT_SYSTEM_ARCHIV_REG</div>
+
      </div>
 
      <div className="p-8">
