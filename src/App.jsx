@@ -30,6 +30,7 @@ const ThemeManager = () => {
     root.style.setProperty('--cmd-glow', theme.glow);
     root.style.setProperty('--cmd-border', theme.border);
     root.style.setProperty('--cmd-grid-color', theme.grid);
+    root.style.setProperty('--cmd-panel', theme.panel);
     
     // Also update body background for seamless transitions
     document.body.style.backgroundColor = theme.navy;

@@ -7,120 +7,135 @@ export const THEME_PRESETS = {
     navy: '#050505',
     accent: '#ffffff',
     glow: '#00ff8d',
-    border: 'rgba(255,255,255,0.15)',
-    grid: 'rgba(255,255,255,0.012)'
+    border: 'rgba(255,255,255,0.12)',
+    grid: 'rgba(255,255,255,0.015)',
+    panel: 'rgba(255,255,255,0.03)'
   },
   QUANTUM_JUNGLE: {
     name: 'Quantum Jungle',
-    navy: '#0b001a',
+    navy: '#06010f',
     accent: '#00ffa3',
-    glow: '#ff00ff',
-    border: 'rgba(0,255,163,0.2)',
-    grid: 'rgba(255,0,255,0.02)'
+    glow: '#cc00ff',
+    border: 'rgba(0,255,163,0.18)',
+    grid: 'rgba(204,0,255,0.02)',
+    panel: 'rgba(204,0,255,0.04)'
   },
   NEBULA_RECON: {
     name: 'Nebula Recon',
-    navy: '#0a0a14',
+    navy: '#050512',
     accent: '#9d00ff',
     glow: '#00ccff',
     border: 'rgba(157,0,255,0.2)',
-    grid: 'rgba(0,204,255,0.02)'
+    grid: 'rgba(0,204,255,0.02)',
+    panel: 'rgba(157,0,255,0.05)'
   },
   DEEP_OCEAN: {
     name: 'Deep Ocean',
-    navy: '#000b14',
+    navy: '#000810',
     accent: '#00d4ff',
-    glow: '#008cff',
+    glow: '#0066ff',
     border: 'rgba(0,212,255,0.2)',
-    grid: 'rgba(0,140,255,0.02)'
+    grid: 'rgba(0,102,255,0.02)',
+    panel: 'rgba(0,212,255,0.04)'
   },
   SOLAR_STORM: {
     name: 'Solar Storm',
-    navy: '#120800',
+    navy: '#0e0600',
     accent: '#ff8c00',
-    glow: '#ff4500',
+    glow: '#ff3300',
     border: 'rgba(255,140,0,0.2)',
-    grid: 'rgba(255,69,0,0.02)'
+    grid: 'rgba(255,51,0,0.02)',
+    panel: 'rgba(255,140,0,0.05)'
   },
   SILICON_FLORA: {
     name: 'Silicon Flora',
-    navy: '#0d0f0d',
-    accent: '#e0e0e0',
-    glow: '#a8ff00',
-    border: 'rgba(224,224,224,0.15)',
-    grid: 'rgba(168,255,0,0.02)'
+    navy: '#0a0b0a',
+    accent: '#d1d1d1',
+    glow: '#7fff00',
+    border: 'rgba(255,255,255,0.1)',
+    grid: 'rgba(127,255,0,0.02)',
+    panel: 'rgba(255,255,255,0.02)'
   },
   FROST_PROTOCOL: {
     name: 'Frost Protocol',
-    navy: '#000f1a',
-    accent: '#ffffff',
-    glow: '#00f2ff',
-    border: 'rgba(0,242,255,0.2)',
-    grid: 'rgba(255,255,255,0.02)'
+    navy: '#020a10',
+    accent: '#e0f7ff',
+    glow: '#00d0ff',
+    border: 'rgba(0,208,255,0.2)',
+    grid: 'rgba(255,255,255,0.02)',
+    panel: 'rgba(0,208,255,0.05)'
   },
   CORAL_SYNAPSE: {
     name: 'Coral Synapse',
-    navy: '#1a0010',
-    accent: '#ff007a',
-    glow: '#00ffa3',
-    border: 'rgba(255,0,122,0.2)',
-    grid: 'rgba(0,255,163,0.02)'
+    navy: '#12000b',
+    accent: '#ff0066',
+    glow: '#00ffcc',
+    border: 'rgba(255,0,102,0.2)',
+    grid: 'rgba(0,255,204,0.02)',
+    panel: 'rgba(255,0,102,0.04)'
   },
   AVIAN_RADAR: {
     name: 'Avian Radar',
-    navy: '#121217',
-    accent: '#ffd700',
+    navy: '#0f0f12',
+    accent: '#e6b800',
     glow: '#ffffff',
-    border: 'rgba(255,215,0,0.2)',
-    grid: 'rgba(255,255,255,0.02)'
+    border: 'rgba(230,184,0,0.2)',
+    grid: 'rgba(255,255,255,0.02)',
+    panel: 'rgba(230,184,0,0.05)'
   },
   LAVA_LOGIC: {
     name: 'Lava Logic',
-    navy: '#0a0500',
-    accent: '#ff3c00',
-    glow: '#ff9d00',
-    border: 'rgba(255,60,0,0.2)',
-    grid: 'rgba(255,157,0,0.02)'
+    navy: '#080200',
+    accent: '#ff4500',
+    glow: '#ff8c00',
+    border: 'rgba(255,69,0,0.2)',
+    grid: 'rgba(255,140,0,0.02)',
+    panel: 'rgba(255,69,0,0.05)'
   },
   PETAL_ENGINE: {
     name: 'Petal Engine',
-    navy: '#120a10',
-    accent: '#ffb7c5',
+    navy: '#0f050c',
+    accent: '#ff99cc',
     glow: '#ffffff',
-    border: 'rgba(255,183,197,0.2)',
-    grid: 'rgba(255,255,255,0.02)'
+    border: 'rgba(255,153,204,0.2)',
+    grid: 'rgba(255,255,255,0.02)',
+    panel: 'rgba(255,153,204,0.04)'
   },
   BEYOND_HORIZON: {
     name: 'Beyond Horizon',
-    navy: '#05020a',
-    accent: '#ff6b00',
-    glow: '#ff0055',
-    border: 'rgba(255,107,0,0.2)',
-    grid: 'rgba(255,0,85,0.02)'
+    navy: '#030107',
+    accent: '#ff4d00',
+    glow: '#ff0044',
+    border: 'rgba(255,77,0,0.2)',
+    grid: 'rgba(255,0,68,0.02)',
+    panel: 'rgba(255,77,0,0.05)'
   },
   BIO_MONITOR: {
     name: 'Bio Monitor',
-    navy: '#080c08',
-    accent: '#39ff14',
+    navy: '#040704',
+    accent: '#00ff41',
     glow: '#00ff8d',
-    border: 'rgba(57,255,20,0.2)',
-    grid: 'rgba(0,255,141,0.02)'
+    border: 'rgba(0,255,65,0.2)',
+    grid: 'rgba(0,255,141,0.02)',
+    panel: 'rgba(0,255,65,0.04)'
   },
   VOID_WHISPER: {
     name: 'Void Whisper',
-    navy: '#020202',
-    accent: '#8b00ff',
-    glow: '#4b0082',
-    border: 'rgba(139,0,255,0.2)',
-    grid: 'rgba(75,0,130,0.02)'
+    navy: '#010101',
+    accent: '#7b00ff',
+    glow: '#000000',
+    border: 'rgba(123,0,255,0.3)',
+    grid: 'rgba(123,0,255,0.03)',
+    panel: 'rgba(255,255,255,0.01)'
   },
   TERRA_COA: {
     name: 'Terra Coa',
-    navy: '#1a0d0a',
-    accent: '#ff7f50',
-    glow: '#f4a460',
-    border: 'rgba(255,127,80,0.2)',
-    grid: 'rgba(244,164,96,0.02)'
+    navy: '#120805',
+    accent: '#ff6347',
+    glow: '#d2b48c',
+    border: 'rgba(255,99,71,0.2)',
+    grid: 'rgba(210,180,140,0.02)',
+    panel: 'rgba(255,99,71,0.04)'
   }
 };
 
