@@ -32,10 +32,10 @@ const Connect = () => {
   const socialLinks = config.social?.links || [];
 
   return (
-    <main id="uplink" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[#050505]">
+    <main id="uplink" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[var(--cmd-navy)]">
 
       {/* Background Grid */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(var(--cmd-accent) 1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.03] pointer-events-none" />
 
       {/* Limit Modal */}
       <AnimatePresence>
@@ -43,7 +43,7 @@ const Connect = () => {
           <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
             className="fixed inset-0 z-[100] flex items-center justify-center p-6 bg-black/95 backdrop-blur-xl"
           >
-            <div className="max-w-md w-full bg-black border border-white/10 p-10 relative">
+            <div className="max-w-md w-full bg-black border border-[var(--cmd-border)] p-10 relative">
               <button onClick={() => setShowLimitModal(false)} className="absolute top-6 right-6 text-white/20 hover:text-white transition-colors">
                 <X size={20} />
               </button>
@@ -74,13 +74,13 @@ const Connect = () => {
           </div>
           <div className="flex flex-col lg:flex-row items-center lg:items-end justify-between gap-6">
             <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
-              {config.pageHeaders?.connect?.line1 || 'UPLINK_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px #ffffff22' }}>{config.pageHeaders?.connect?.line2 || 'SIGNAL'}</span>
+              {config.pageHeaders?.connect?.line1 || 'UPLINK_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px var(--cmd-accent)' }}>{config.pageHeaders?.connect?.line2 || 'SIGNAL'}</span>
             </h1>
             <p className="text-[10px] sm:text-[11px] font-mono text-white/30 tracking-[0.2em] sm:tracking-[0.3em] uppercase max-w-md text-center lg:text-right italic leading-relaxed">
               All transmissions are encrypted and routed through secure architecture nodes.
             </p>
           </div>
-          <div className="mt-10 h-[1px] w-full bg-white/5" />
+          <div className="mt-10 h-[1px] w-full bg-[var(--cmd-border)]" />
         </header>
 
         {/* ── MAIN GRID [CONNECT_GRID] ── */}
@@ -88,16 +88,16 @@ const Connect = () => {
 
           {/* LEFT: CONTACT FORM [SIGNAL_FORM] */}
           <div className="lg:col-span-7">
-            <div className="relative bg-black border border-white/5 p-6 sm:p-14 h-full">
+            <div className="relative bg-black border border-[var(--cmd-border)] p-6 sm:p-14 h-full">
               <div className="absolute top-4 right-8 text-[7px] font-mono text-white/10 tracking-[0.5em] uppercase">[SIGNAL_FORM]</div>
 
               {/* Form Header */}
-              <div className="flex items-center justify-between mb-12 pb-8 border-b border-white/5">
+              <div className="flex items-center justify-between mb-12 pb-8 border-b border-[var(--cmd-border)]">
                 <div>
                   <h2 className="font-headline text-2xl text-white font-black uppercase tracking-tighter mb-1">OUTBOUND_SIGNAL</h2>
                   <div className="flex items-center gap-3">
                     <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 2, repeat: Infinity }}
-                      className="w-1.5 h-1.5 bg-[#00ff8d] rounded-full shadow-[0_0_6px_#00ff8d]" />
+                      className="w-1.5 h-1.5 bg-[var(--cmd-glow)] rounded-full shadow-[0_0_6px_var(--cmd-glow)]" />
                     <span className="text-[8px] font-mono text-white/30 tracking-[0.4em] uppercase">STATUS: READY_v9</span>
                   </div>
                 </div>
@@ -112,7 +112,7 @@ const Connect = () => {
                     <input
                       type="text" required disabled={isTransmitting}
                       value={formData.name} onChange={e => setFormData({...formData, name: e.target.value})}
-                      className="w-full bg-white/[0.02] border border-white/5 p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all placeholder:text-white/10 tracking-widest"
+                      className="w-full bg-white/[0.02] border border-[var(--cmd-border)] p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all placeholder:text-white/10 tracking-widest"
                       placeholder="NAME_OR_CLASS..."
                     />
                   </div>
@@ -121,7 +121,7 @@ const Connect = () => {
                     <input
                       type="email" required disabled={isTransmitting}
                       value={formData.email} onChange={e => setFormData({...formData, email: e.target.value})}
-                      className="w-full bg-white/[0.02] border border-white/5 p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all placeholder:text-white/10 tracking-widest"
+                      className="w-full bg-white/[0.02] border border-[var(--cmd-border)] p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all placeholder:text-white/10 tracking-widest"
                       placeholder="SECURE_EMAIL_ROUTE..."
                     />
                   </div>
@@ -132,7 +132,7 @@ const Connect = () => {
                   <textarea
                     required rows="7" disabled={isTransmitting}
                     value={formData.message} onChange={e => setFormData({...formData, message: e.target.value})}
-                    className="w-full bg-white/[0.02] border border-white/5 p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all resize-none placeholder:text-white/10 tracking-widest leading-relaxed"
+                    className="w-full bg-white/[0.02] border border-[var(--cmd-border)] p-5 text-white font-mono text-xs focus:outline-none focus:border-white/20 transition-all resize-none placeholder:text-white/10 tracking-widest leading-relaxed"
                     placeholder="DETAIL_MISSION_PARAMETERS..."
                   />
                 </div>
@@ -173,7 +173,7 @@ const Connect = () => {
           <div className="lg:col-span-5 flex flex-col gap-8">
 
             {/* Direct Links [SOCIAL_NODES] */}
-            <div className="relative bg-black border border-white/5 p-10 flex flex-col gap-8">
+            <div className="relative bg-black border border-[var(--cmd-border)] p-10 flex flex-col gap-8">
               <div className="absolute top-4 right-8 text-[7px] font-mono text-white/10 tracking-[0.5em] uppercase">[SOCIAL_NODES]</div>
               <div>
                 <h3 className="font-headline text-xl text-white font-black uppercase tracking-tighter mb-1">DIRECT_ACCESS</h3>
@@ -188,7 +188,7 @@ const Connect = () => {
                     initial={{ opacity: 0, x: 20 }}
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: i * 0.1 }}
-                    className="group flex items-center justify-between px-6 py-5 border border-white/5 hover:border-white/30 bg-white/[0.01] hover:bg-white/[0.04] transition-all duration-500"
+                    className="group flex items-center justify-between px-6 py-5 border border-[var(--cmd-border)] hover:border-white/30 bg-white/[0.01] hover:bg-white/[0.04] transition-all duration-500"
                   >
                     <div className="flex items-center gap-5">
                       <div className="w-8 h-8 flex items-center justify-center opacity-40 group-hover:opacity-100 transition-opacity">
@@ -208,7 +208,7 @@ const Connect = () => {
             </div>
 
             {/* Email Direct [EMAIL_NODE] */}
-            <div className="relative bg-black border border-white/5 p-10 flex flex-col gap-6">
+            <div className="relative bg-black border border-[var(--cmd-border)] p-10 flex flex-col gap-6">
               <div className="absolute top-4 right-8 text-[7px] font-mono text-white/10 tracking-[0.5em] uppercase">[EMAIL_NODE]</div>
               <div>
                 <h3 className="font-headline text-xl text-white font-black uppercase tracking-tighter mb-1">PRIORITY_MAIL</h3>
@@ -225,11 +225,11 @@ const Connect = () => {
             </div>
 
             {/* Footer Auth [AUTH_STATUS] */}
-            <div className="border border-white/5 bg-white/[0.01] px-8 py-5 flex items-center justify-between">
+            <div className="border border-[var(--cmd-border)] bg-white/[0.01] px-8 py-5 flex items-center justify-between">
               <div className="text-[7px] font-mono text-white/20 uppercase tracking-[0.4em]">[AUTH_STATUS]</div>
               <div className="flex items-center gap-3">
                 <motion.div animate={{ opacity: [0.3, 1, 0.3] }} transition={{ duration: 1.5, repeat: Infinity }}
-                  className="w-1 h-1 rounded-full bg-[#00ff8d]" />
+                  className="w-1 h-1 rounded-full bg-[var(--cmd-glow)]" />
                 <span className="text-[7px] font-mono text-white/30 uppercase tracking-widest">UPLINK_ESTABLISHED</span>
               </div>
             </div>

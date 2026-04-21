@@ -20,7 +20,7 @@ const SkillChip = ({ skill, i }) => {
       transition={{ duration: 0.4, delay: i * 0.05 }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
-      className="flex flex-col items-center gap-4 p-6 border border-white/5 bg-white/[0.01] hover:border-white/30 hover:bg-white/[0.04] transition-all duration-500 cursor-default group relative overflow-hidden"
+      className="flex flex-col items-center gap-4 p-6 border border-[var(--cmd-border)] bg-white/[0.01] hover:border-[var(--cmd-accent)] hover:bg-white/[0.04] transition-all duration-500 cursor-default group relative overflow-hidden"
     >
       {/* Scan sweep on hover */}
       <motion.div
@@ -57,7 +57,7 @@ const CategoryBlock = ({ cat, idx }) => (
     {/* Category Header */}
     <div className="flex items-center gap-6 mb-6">
       <div className="text-[7px] font-mono text-white/20 tracking-[0.5em] uppercase">{cat.tag}</div>
-      <div className="flex-1 h-[1px] bg-white/5" />
+      <div className="flex-1 h-[1px] bg-[var(--cmd-border)]" />
       <h2 className="text-[11px] font-mono font-black text-white/50 uppercase tracking-[0.5em]">
         {cat.label}
       </h2>
@@ -75,10 +75,10 @@ const CategoryBlock = ({ cat, idx }) => (
 const Skills = () => {
   const { config } = useConfig();
   return (
-  <main id="skills" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[#050505]">
+    <main id="skills" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[var(--cmd-navy)]">
     
     {/* Background grid */}
-    <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+    <div className="absolute inset-0 bg-[radial-gradient(var(--cmd-accent) 1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.03] pointer-events-none" />
 
     <div className="max-w-[1700px] mx-auto w-full relative z-10">
 
@@ -89,13 +89,13 @@ const Skills = () => {
         </div>
         <div className="flex flex-col lg:flex-row items-end justify-between gap-6">
           <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
-            {config.pageHeaders?.skills?.line1 || 'SKILL_'}<span className="text-transparent" style={{ WebkitTextStroke: '1px #ffffff20' }}>{config.pageHeaders?.skills?.line2 || 'SET'}</span>
+            {config.pageHeaders?.skills?.line1 || 'SKILL_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px var(--cmd-accent)' }}>{config.pageHeaders?.skills?.line2 || 'SET'}</span>
           </h1>
           <p className="text-[11px] font-mono text-white/30 tracking-[0.3em] uppercase max-w-md text-right italic">
             Full-stack capability registry. Hover to reveal active tech nodes.
           </p>
         </div>
-        <div className="mt-8 h-[1px] w-full bg-white/5" />
+        <div className="mt-8 h-[1px] w-full bg-[var(--cmd-border)]" />
       </header>
 
       {/* ── ALL SKILL CATEGORIES ── */}

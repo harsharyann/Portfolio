@@ -47,15 +47,15 @@ const About = () => {
   const name = config.profile?.name || 'HARSH ARYAN';
 
   return (
-    <main id="profile" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[#050505]">
+    <main id="profile" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[var(--cmd-navy)]">
 
       {/* ── Background Grid ── */}
-      <div className="absolute inset-0 bg-[radial-gradient(#ffffff03_1px,transparent_1px)] bg-[size:40px_40px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(var(--cmd-accent) 1px,transparent_1px)] bg-[size:40px_40px] opacity-[0.03] pointer-events-none" />
 
       <div className="max-w-[1700px] mx-auto w-full relative z-10 flex flex-col gap-10">
 
         {/* ── MAIN HERO HEADER [HERO_MAIN] ── */}
-            <section className="w-full blueprint-panel p-6 sm:p-10 lg:p-16 bg-white/[0.01] border-white/5 relative group">
+            <section className="w-full blueprint-panel p-6 sm:p-10 lg:p-16 bg-white/[0.01] border-[var(--cmd-border)] relative group">
 
 
            <div className="flex flex-col gap-8">
@@ -64,7 +64,7 @@ const About = () => {
                </h1>
 
               {/* SUB HERO [SUB_HERO_V1] */}
-              <div className="flex flex-col lg:flex-row items-center gap-6 pt-8 border-t border-white/5">
+              <div className="flex flex-col lg:flex-row items-center gap-6 pt-8 border-t border-[var(--cmd-border)]">
                  <div className="flex items-center gap-4 text-white/40">
                     <div className="w-10 h-[1px] bg-white/20" />
                     <span className="text-[10px] font-mono tracking-[0.4em] uppercase font-bold text-white">OPERATIONAL_CORE</span>
@@ -84,7 +84,7 @@ const About = () => {
 
            {/* 1. PERSONNEL IDENTIFIER [IDENT_CARD] */}
            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:col-span-3 flex flex-col gap-6">
-              <div className="relative group p-[1px] bg-white/10 border border-white/5">
+              <div className="relative group p-[1px] bg-white/10 border border-[var(--cmd-border)]">
                  
                  <div className="relative bg-black p-2 border border-white/10 overflow-hidden">
                     <div className="relative w-full aspect-[3/4] overflow-hidden grayscale brightness-50 group-hover:brightness-100 group-hover:grayscale-0 transition-all duration-1000">
@@ -94,7 +94,7 @@ const About = () => {
                  </div>
               </div>
 
-              <div className="blueprint-panel p-6 bg-white/[0.02] border-white/10 relative">
+              <div className="blueprint-panel p-6 bg-white/[0.02] border-[var(--cmd-border)] relative">
                  
                  <h2 className="text-3xl font-headline font-black text-white uppercase tracking-tighter leading-none mb-4">{name}</h2>
                  <div className="flex flex-wrap gap-2 uppercase font-black text-[8px]">
@@ -107,13 +107,13 @@ const About = () => {
 
            {/* 2. CORE PROCESSING FEED [SYSTEM_NARRATIVE] */}
            <div className="lg:col-span-6">
-              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="blueprint-panel bg-white/[0.01] border-white/5 p-10 h-full flex flex-col relative">
+              <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="blueprint-panel bg-white/[0.01] border-[var(--cmd-border)] p-10 h-full flex flex-col relative">
                  
 
                  {/* Typing text paragraphs */}
                  <div className="text-xs md:text-sm font-mono leading-loose text-white/50 tracking-wider uppercase italic space-y-10 py-6 flex-1">
                     {philosophy.split('\n\n').map((para, i) => (
-                       <p key={i} className="border-l border-white/10 pl-8">
+                       <p key={i} className="border-l border-[var(--cmd-border)] pl-8">
                           <DataTypist text={para} delay={18} />
                        </p>
                     ))}
@@ -125,7 +125,7 @@ const About = () => {
 
            {/* 3. ETHOS / QUOTE MODULE [VISION_DATA] */}
            <motion.div initial={{ opacity: 0 }} whileInView={{ opacity: 1 }} className="lg:col-span-3 flex flex-col gap-6">
-              <div className="blueprint-panel bg-black border-l-4 border-white/40 p-10 flex-1 flex flex-col justify-between relative">
+              <div className="blueprint-panel bg-black border-l-4 border-[var(--cmd-border)] p-10 flex-1 flex flex-col justify-between relative">
                  
 
                  {/* Quote Block with typing effect */}
@@ -138,13 +138,13 @@ const About = () => {
                  </div>
 
                  {/* Author Signature */}
-                 <div className="border-t border-white/10 pt-5 text-[8px] font-mono text-white/30 tracking-[0.4em] uppercase">
+                 <div className="border-t border-[var(--cmd-border)] pt-5 text-[8px] font-mono text-white/30 tracking-[0.4em] uppercase">
                     &mdash; {name}
                  </div>
               </div>
 
               {/* Executive Status Card [EXEC_CARD] */}
-              <div className="relative bg-white/[0.02] border border-white/10 px-6 py-5 flex items-center justify-between group hover:border-white/30 transition-all">
+              <div className="relative bg-white/[0.02] border border-[var(--cmd-border)] px-6 py-5 flex items-center justify-between group hover:border-white/30 transition-all">
                  
                  <div className="flex flex-col gap-1">
                     <span className="text-[8px] font-mono text-white/20 uppercase tracking-[0.4em]">Current Position</span>
@@ -158,7 +158,7 @@ const About = () => {
                  <motion.div
                     animate={{ opacity: [0.2, 1, 0.2] }}
                     transition={{ duration: 2, repeat: Infinity }}
-                    className="w-2 h-2 rounded-full bg-[#00ff8d] shadow-[0_0_8px_#00ff8d]"
+                    className="w-2 h-2 rounded-full bg-[var(--cmd-glow)] shadow-[0_0_8px_var(--cmd-glow)]"
                  />
               </div>
 

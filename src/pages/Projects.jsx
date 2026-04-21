@@ -26,13 +26,13 @@ const ProjectCard = ({ proj, index }) => {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ duration: 0.8, delay: index * 0.1 }}
-      className="blueprint-panel group relative flex flex-col bg-black border border-white/5 p-6 sm:p-10 transition-all duration-500 hover:border-white hover:shadow-[0_0_50px_rgba(255,255,255,0.05)]"
+      className="blueprint-panel group relative flex flex-col bg-black border border-[var(--cmd-border)] p-6 sm:p-10 transition-all duration-500 hover:border-[var(--cmd-accent)] hover:shadow-[0_0_50px_var(--cmd-glow)]"
     >
       <div className="absolute top-4 right-8 flex items-center gap-3">
          <motion.div 
             animate={{ opacity: [0.2, 1, 0.2] }} 
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-1.5 h-1.5 bg-[#00ff8d] rounded-full shadow-[0_0_8px_#00ff8d]"
+            className="w-1.5 h-1.5 bg-[var(--cmd-glow)] rounded-full shadow-[0_0_8px_var(--cmd-glow)]"
          />
          <span className="text-[7px] font-mono text-white/20 tracking-[0.5em] uppercase font-black">STREAM_ACTIVE</span>
       </div>
@@ -88,7 +88,7 @@ const CertificateCard = ({ cred, index }) => (
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.8, delay: index * 0.1 }}
-    className="blueprint-panel group relative bg-[#0a0a0a] border border-white/5 overflow-hidden transition-all hover:border-white/20"
+    className="blueprint-panel group relative bg-[#0a0a0a] border border-[var(--cmd-border)] overflow-hidden transition-all hover:border-[var(--cmd-accent)]"
   >
      {/* ── IMAGE SECTION ── */}
      <div className="h-[200px] relative overflow-hidden bg-black border-b border-white/10">
@@ -105,10 +105,10 @@ const CertificateCard = ({ cred, index }) => (
 
      <div className="p-8">
         <div className="flex justify-between items-start mb-6">
-           <ShieldCheck size={20} className="text-[#00ff8d] opacity-40 group-hover:opacity-100 transition-opacity" />
+           <ShieldCheck size={20} className="text-[var(--cmd-glow)] opacity-40 group-hover:opacity-100 transition-opacity" />
            <div className="text-right">
-              <div className="font-mono text-[7px] text-white/20 tracking-[0.4em] uppercase mb-1">VER_NODE</div>
-              <div className="font-mono text-[9px] text-[#00ff8d] font-black tracking-widest uppercase">STABLE_v1</div>
+              <div className="font-mono text-[7px] text-white/20 tracking-[0.5em] uppercase mb-1">VER_NODE</div>
+              <div className="font-mono text-[9px] text-[var(--cmd-glow)] font-black tracking-widest uppercase">STABLE_v1</div>
            </div>
         </div>
         
@@ -143,17 +143,17 @@ const Projects = () => {
   ];
 
   return (
-    <main id="artifacts" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[#050505]">
+    <main id="artifacts" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[var(--cmd-navy)]">
       
       {/* Structural Background Grid */}
-      <div className="absolute inset-0 bg-[linear-gradient(to_right,#ffffff02_1px,transparent_1px),linear-gradient(to_bottom,#ffffff02_1px,transparent_1px)] bg-[size:200px_200px] pointer-events-none" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_right,var(--cmd-accent) 1px,transparent_1px),linear-gradient(to_bottom,var(--cmd-accent) 1px,transparent_1px)] bg-[size:200px_200px] opacity-[0.015] pointer-events-none" />
 
       <div className="max-w-[1700px] mx-auto w-full relative z-10">
         <header className="mb-24 flex flex-col lg:flex-row items-center lg:items-end justify-between gap-10">
            <div className="max-w-4xl text-center lg:text-left">
 
               <h1 className="font-headline text-4xl md:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none">
-                 {config.pageHeaders?.projects?.line1 || 'ARTIFACT_'}<span className="text-white/20">{config.pageHeaders?.projects?.line2 || 'REGISTRY'}</span>
+                 {config.pageHeaders?.projects?.line1 || 'ARTIFACT_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px var(--cmd-accent)' }}>{config.pageHeaders?.projects?.line2 || 'REGISTRY'}</span>
               </h1>
            </div>
 

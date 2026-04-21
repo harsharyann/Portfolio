@@ -68,7 +68,7 @@ const Home = () => {
   const { config } = useConfig();
 
   return (
-    <main className="min-h-screen pt-32 pb-24 px-6 lg:px-12 relative tech-grid-complex overflow-hidden bg-[#050505]">
+    <main className="min-h-screen pt-32 pb-24 px-6 lg:px-12 relative tech-grid-complex overflow-hidden bg-[var(--cmd-navy)]">
 
 
       <div className="max-w-[1700px] mx-auto w-full flex flex-col gap-10 relative z-10">

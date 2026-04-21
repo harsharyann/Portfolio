@@ -15,12 +15,12 @@ const ExperienceNode = ({ exp, index }) => (
         <motion.div 
             animate={{ scale: [1, 1.5, 1], opacity: [0.3, 1, 0.3] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="w-4 h-4 bg-white rounded-full shadow-[0_0_15px_#fff]"
+            className="w-4 h-4 bg-white rounded-full shadow-[0_0_15px_var(--cmd-glow)]"
         />
     </div>
 
     {/* Experience Card */}
-    <div className="w-full md:w-[45%] blueprint-panel p-8 bg-white/[0.01] border-white/5 relative group hover:border-white/20 transition-all duration-500 overflow-hidden">
+    <div className="w-full md:w-[45%] blueprint-panel p-8 bg-white/[0.01] border-[var(--cmd-border)] relative group hover:border-[var(--cmd-accent)] transition-all duration-500 overflow-hidden">
        {/* Layout Name Tag */}
        <div className={`absolute top-2 ${index % 2 === 0 ? 'right-4' : 'left-4'} text-[7px] font-mono text-white/20 uppercase tracking-[0.4em]`}>
           [EXP_NODE_0{index + 1}]
@@ -68,7 +68,7 @@ const LightningWire = () => (
                 opacity: [0.1, 0.5, 0.1]
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute top-0 w-full bg-gradient-to-b from-transparent via-white to-transparent shadow-[0_0_15px_rgba(255,255,255,0.5)]"
+            className="absolute top-0 w-full bg-gradient-to-b from-transparent via-[var(--cmd-accent)] to-transparent shadow-[0_0_15px_var(--cmd-glow)]"
         />
         
         {/* Thunderstorm Pulses */}
@@ -90,10 +90,10 @@ const Experience = () => {
   const experiences = config.experience || [];
 
   return (
-    <main id="experience" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[#050505]">
+    <main id="experience" className="pt-32 pb-40 px-6 lg:px-12 min-h-screen relative overflow-hidden bg-[var(--cmd-navy)]">
       
       {/* Background Ambience */}
-      <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-white/[0.02] to-transparent pointer-events-none" />
+      <div className="absolute inset-x-0 top-0 h-96 bg-gradient-to-b from-[var(--cmd-accent)]/5 to-transparent pointer-events-none" />
 
       <div className="max-w-[1400px] mx-auto w-full relative z-10">
         
@@ -102,7 +102,7 @@ const Experience = () => {
 
 
            <h1 className="font-headline text-3xl sm:text-5xl lg:text-6xl font-black text-white uppercase tracking-tighter leading-none mb-4">
-              {config.pageHeaders?.experience?.line1 || 'OPERATIONAL_'}<span className="text-white/20">{config.pageHeaders?.experience?.line2 || 'ARC'}</span>
+              {config.pageHeaders?.experience?.line1 || 'OPERATIONAL_'}<span className="text-white/20" style={{ WebkitTextStroke: '1px var(--cmd-accent)' }}>{config.pageHeaders?.experience?.line2 || 'ARC'}</span>
            </h1>
            <p className="text-[10px] sm:text-[12px] font-mono text-white/30 tracking-[0.2em] sm:tracking-[0.4em] uppercase max-w-xl mx-auto italic">
               Tracing the signal through structural iterations and technological evolution.
@@ -120,9 +120,9 @@ const Experience = () => {
         </div>
 
         {/* ── FOOTER STATUS ── */}
-        <div className="mt-20 border-t border-white/5 pt-12 flex flex-col items-center gap-6">
+        <div className="mt-20 border-t border-[var(--cmd-border)] pt-12 flex flex-col items-center gap-6">
            <div className="flex items-center gap-8">
-              <Activity className="text-white/20 animate-pulse" size={20} />
+              <Activity className="text-[var(--cmd-glow)] animate-pulse" size={20} />
               <div className="text-[9px] font-mono text-white/40 uppercase tracking-widest">TIMELINE_STATUS: SECURE_HISTORY</div>
            </div>
         </div>
